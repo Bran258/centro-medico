@@ -1,0 +1,135 @@
+/* ===== Hero ===== */
+.sobre-nosotros-hero {
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Azul púrpura moderno */
+  color: #ffffff;
+  padding: 8rem 0;
+  text-align: center;
+}
+
+.sobre-nosotros-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.sobre-nosotros-hero p {
+  font-size: 1.35rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 1.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Misión y Visión ===== */
+.mision-vision-section {
+  background-color: #fdfdfd;
+  padding: 6rem 0;
+}
+
+.mision-vision-section h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1e293b; /* gris oscuro elegante */
+}
+
+.mision-vision-section p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #475569; /* gris medio */
+}
+
+/* Imagen */
+.mision-vision-image-wrapper {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.mision-vision-image-wrapper img {
+  border-radius: 1.5rem;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.mision-vision-image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+/* Títulos y párrafos */
+.mision-title,
+.vision-title {
+  color: #4f46e5; /* azul moderno para resaltar */
+}
+
+.mision-description,
+.vision-description {
+  color: #334155;
+  font-size: 1.1rem;
+}
+
+/* ===== Valores ===== */
+.valores-section {
+  background: linear-gradient(to top, #f0f4ff, #eef2ff);
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.valores-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 4rem;
+}
+
+/* ===== Cards de Valores ===== */
+.valor-card {
+  border: none;
+  border-radius: 1.5rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: #ffffff;
+}
+
+.valor-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Iconos */
+.valor-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2); /* degradado moderno */
+  color: #fff;
+  font-size: 2rem; /* tamaño perfecto para Material Icons */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.valor-icon:hover {
+  transform: scale(1.15);
+  background: linear-gradient(135deg, #764ba2, #667eea);
+}
+
+/* Títulos y descripciones */
+.valor-title {
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: #1e293b;
+}
+
+.valor-description {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.6;
+}
