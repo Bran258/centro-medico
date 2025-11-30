@@ -1,0 +1,28 @@
+/* CONTENEDOR GENERAL */
+.reservar-container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  max-width: 1250px;
+}
+
+/* TÍTULO PRINCIPAL */
+.reservar-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.reservar-subtitle {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* CAJA BLANCA */
+.reservar-box {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 32px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}

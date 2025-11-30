@@ -1,0 +1,41 @@
+/* CONTENEDOR */
+.resumen-card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* TÍTULO */
+.resumen-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+/* TEXTOS */
+.label-muted {
+  color: #64748b; /* slate-500 */
+  font-size: 0.9rem;
+}
+
+.label-strong {
+  color: #0f172a; /* slate-900 */
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* BOTÓN CONFIRMAR */
+.btn-confirm {
+  height: 48px;
+  font-weight: 700;
+  border-radius: 10px;
+  background-color: #0ea5e9;
+  border: none;
+}
+
+.btn-confirm:hover {
+  background-color: #0284c7;
+}

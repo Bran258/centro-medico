@@ -1,0 +1,52 @@
+/* CONTENEDOR PRINCIPAL */
+.step-card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* TÍTULO */
+.step-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+}
+
+/* LABEL */
+.label-text {
+  color: #334155;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* INPUTS */
+.custom-input {
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+
+.custom-input:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 2px rgba(14,165,233,0.3);
+}
+
+/* TEXTAREA */
+.custom-textarea {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+}
+
+.custom-textarea:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 2px rgba(14,165,233,0.3);
+}
+
+/* RADIO LABEL */
+.pointer {
+  cursor: pointer;
+}

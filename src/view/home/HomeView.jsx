@@ -10,7 +10,7 @@ export default function HomeView() {
   const infoCards = getInfoCards(navigate);
 
   return (
-    <main className="home-container bg-white">
+    <div className="home-container bg-white">
       {/* Hero Section */}
       <section className="hero-section text-white d-flex align-items-center text-start">
         <Container>
@@ -50,7 +50,7 @@ export default function HomeView() {
 
       {/* Tarjetas informativas */}
       <InfoCardsSection title="Conoce Más Sobre Nosotros" cards={infoCards} />
-    </main>
+    </div>
   );
 }
 
