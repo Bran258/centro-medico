@@ -1,0 +1,154 @@
+/* =========================================================
+   MASTER DE FESTIVIDADES - CENTRO MÉDICO SANTA ROSA
+   ========================================================= */
+
+/* --- 1. AÑO NUEVO (Dorado) --- */
+body.theme-new-year {
+    --primary-color: #ffd700;
+    --secondary-color: #000000;
+    --text-light: #000000;
+}
+
+/* Confeti */
+body.theme-new-year::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: radial-gradient(#ffd700 20%, transparent 20%), radial-gradient(#fff 20%, transparent 20%);
+    background-size: 10px 10px, 12px 12px;
+    animation: confettiFall 3s linear infinite;
+    opacity: 0.6;
+}
+
+/* --- 2. CANDELARIA (Multicolor) --- */
+body.theme-candelaria {
+    --primary-color: #d90429;
+    --secondary-color: #ffaa00;
+}
+
+body.theme-candelaria .navbar {
+    background: linear-gradient(90deg, #d90429 0%, #2b2d42 50%, #ffaa00 100%) !important;
+    border-bottom: 4px solid #ef233c;
+}
+
+/* --- 3. INTI RAYMI (Bronce/Inca) --- */
+body.theme-inti-raymi {
+    --primary-color: #ce8118;
+    --secondary-color: #5c3c10;
+}
+
+body.theme-inti-raymi .navbar {
+    border-bottom: 5px solid transparent;
+    border-image: linear-gradient(to right, #d00000 25%, #ffba08 25%, #ffba08 50%, #3f88c5 50%, #3f88c5 75%, #032b43 75%) 1;
+}
+
+/* --- 4. PERÚ / FIESTAS PATRIAS (Rojo Oficial) --- */
+body.theme-peru {
+    --primary-color: #D91023;
+    --secondary-color: #FFFFFF;
+    --text-light: #FFFFFF;
+}
+
+/* Escarapela en Navbar */
+body.theme-peru .navbar::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #D91023 30%, #fff 31%, #fff 50%, #D91023 51%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1032;
+}
+
+/* --- 5. VARIANTES MILITARES --- */
+
+/* FAP (Cielo) */
+body.theme-peru.fap {
+    --primary-color: #5D9CEC;
+    --secondary-color: #D91023;
+}
+
+/* MARINA (Azul oscuro) */
+body.theme-peru.marina {
+    --primary-color: #003366;
+    --secondary-color: #D91023;
+}
+
+/* EJÉRCITO (Verde) */
+body.theme-peru.ejercito {
+    --primary-color: #4B5320;
+    --secondary-color: #D91023;
+}
+
+/* --- 6. FECHAS CÍVICAS MENORES --- */
+body.theme-adulto-mayor {
+    --primary-color: #6c757d;
+    --secondary-color: #e0e0e0;
+}
+
+body.theme-gastronomia {
+    --primary-color: #a44a3f;
+    --secondary-color: #556b2f;
+}
+
+body.theme-santos {
+    --primary-color: #5a189a;
+    --secondary-color: #e0aaff;
+}
+
+/* --- 7. NAVIDAD (Nieve y Luces) --- */
+body.theme-navidad {
+    --primary-color: #1a1a2e;
+    /* Noche */
+    --secondary-color: #d42426;
+    /* Rojo Navidad */
+    /* Animación Nieve */
+    background-image:
+        radial-gradient(white 2px, transparent 3px),
+        radial-gradient(rgba(255, 255, 255, 0.8) 1.5px, transparent 2.5px);
+    background-size: 500px 500px, 300px 300px;
+    animation: snowfall 15s linear infinite;
+    background-color: #1a1a2e;
+}
+
+/* Luces Navideñas en el Navbar */
+body.theme-navidad .navbar::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: radial-gradient(circle, #d42426 3px, transparent 4px), radial-gradient(circle, #2f5a28 3px, transparent 4px);
+    background-size: 30px 20px;
+    background-repeat: repeat-x;
+}
+
+/* Animaciones Generales */
+@keyframes confettiFall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes snowfall {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 500px 1000px, 300px 600px;
+    }
+}

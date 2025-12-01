@@ -1,0 +1,22 @@
+:root {
+    /* --- COLORES OFICIALES DEL LOGO --- */
+    /* Azul oscuro del borde y texto */
+    --primary-color: #1a1a2e;
+    /* Naranja terracota del fondo de la cruz */
+    --secondary-color: #e95420;
+    /* Blanco para texto sobre fondos oscuros */
+    --text-light: #ffffff;
+    /* Color de fondo general */
+    --background-light: #f8f9fa;
+
+    /* --- COLORES NAVIDEÑOS (Para los adornos) --- */
+    --xmas-red: #d42426;
+    --xmas-green: #2f5a28;
+    --xmas-gold: #f0c75e;
+}
+
+body {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
