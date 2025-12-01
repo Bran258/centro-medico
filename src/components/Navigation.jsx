@@ -19,8 +19,11 @@ export default function Navigation() {
       variant="dark"
       fixed="top"
       className="shadow-sm py-3"
+      // --- CAMBIO AQUÍ: Usamos la variable dinámica en lugar del color fijo ---
       style={{
-        background: "linear-gradient(90deg, #2C3E50 0%, #4B6584 100%)",
+        backgroundColor: "var(--primary-color)", // Usará el azul oscuro del logo
+        borderBottom: "3px solid var(--secondary-color)", // Un toque del naranja oficial
+        transition: "background-color 0.3s ease" // Suaviza el cambio de color
       }}
     >
       <Container>
@@ -48,7 +51,7 @@ export default function Navigation() {
             </Link>
 
             <Link
-              to="/sobre_nosotros"
+              to="/sobre_nosotros" // Nota: Asegúrate que esta ruta coincida con tu App.jsx
               className="d-flex align-items-center gap-1 fw-semibold text-white text-decoration-none px-3"
             >
               <InfoCircle size={16} /> Quiénes Somos
@@ -72,10 +75,17 @@ export default function Navigation() {
           {/* Botón Reservar Cita */}
           <div className="d-flex align-items-center gap-3">
             <Button
-              className="fw-bold d-flex align-items-center gap-2 px-4 py-2 rounded text-dark shadow border-0 bg-white bg-gradient"
+              className="fw-bold d-flex align-items-center gap-2 px-4 py-2 rounded text-dark shadow border-0"
               onClick={() => navigate("/reservar_cita")}
+              // Opcional: Si quieres que el botón use el color SECUNDARIO del panel
+              style={{
+                backgroundColor: "var(--primary-color)", // Usará el azul oscuro del logo
+                borderBottom: "3px solid var(--secondary-color)", // Un toque del naranja oficial
+                color: "#ffffffff" // Ajusta el texto según el fondo
+
+              }}
             >
-              <Calendar2Check size={20} /> Reservar Cita
+              <Calendar2Check size={20} /> Reservar Tu Cita
             </Button>
           </div>
         </Navbar.Collapse>
@@ -83,4 +93,3 @@ export default function Navigation() {
     </Navbar>
   );
 }
-

@@ -6,10 +6,8 @@
 /* HERO SECTION */
 .hero-section {
   position: relative;
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.35),
-      rgba(0, 0, 0, 0.6)
-    ),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.6)),
     url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2mvuJpLLY-qXOce06r2Ur_RjZqJfGY1r0EcAfXyST2zHpZyDaQNviS40j-XkmgssoBuvHGcGgHCzc1s406fxSjDp75HIKmD0CC2FtzUbEbfDTkBFr_o4pbWRDruOh13kxec4z5MV6_dgR6N9IqT33m39Pv18bcGIMQ_UlDfpxFZFpF9FCRlaZg1VnFN76dtuYMNCTe9p5oDQz7Gchf6QT24AUbrG2J-chtM--fCyW6IRyQeeBONBBdi8vNmbQ7993_X-3hwhAeV0");
   background-size: cover;
   background-position: center;
@@ -75,4 +73,7 @@
   margin: auto;
 }
 
-
+.boton-reserva {
+  background-color: var(--primary-color);
+  /* Variable dinámica */
+}
