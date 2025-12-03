@@ -8,42 +8,143 @@ const SeasonalPromo = () => {
     const { currentCampaign } = useContext(ThemeContext);
     const navigate = useNavigate();
 
-    // Si no carga la campaña, usa 'lluvias' como prueba por defecto para que lo veas YA
     const campaignKey = currentCampaign || 'lluvias';
     const data = campaigns[campaignKey] || campaigns['default'];
 
-    // Si no hay tarjetas (caso default vacío), no mostramos nada
     if (!data.cards || data.cards.length === 0) return null;
 
     return (
-        <div style={{ backgroundColor: data.bgColor, padding: '60px 0' }}>
+        <section
+            style={{
+                background: data.bgGradient || data.bgColor,
+                padding: '70px 0',
+            }}
+        >
             <Container>
-                {/* Encabezado de la Sección */}
+                {/* Encabezado */}
                 <div className="text-center mb-5">
-                    <h2 className="fw-bold" style={{ color: data.titleColor, fontSize: '2rem' }}>
+                    <h2
+                        className="fw-bold"
+                        style={{
+                            color: data.titleColor,
+                            fontSize: '2.4rem',
+                            marginBottom: '10px',
+                            letterSpacing: '-0.5px'
+                        }}
+                    >
                         {data.title}
                     </h2>
-                    <p className="fs-5 text-secondary">{data.subtitle}</p>
+                    <p
+                        className="fs-5"
+                        style={{
+                            color: '#5e6a74',
+                            maxWidth: '700px',
+                            margin: '0 auto'
+                        }}
+                    >
+                        {data.subtitle}
+                    </p>
                 </div>
 
-                {/* Tarjetas de Servicios */}
+                {/* Tarjetas */}
                 <Row className="justify-content-center">
                     {data.cards.map((card, index) => (
                         <Col key={index} md={6} lg={4} className="mb-4">
-                            <Card className="h-100 shadow-sm border-0" style={{ borderRadius: '15px', overflow: 'hidden' }}>
-                                <div className={`card-header text-center py-3 ${card.highlight ? 'bg-danger text-white' : 'bg-light'}`}>
-                                    <span style={{ fontSize: '3rem' }}>{card.icon}</span>
+                            <Card
+                                className="h-100 shadow-sm border-0"
+                                style={{
+                                    borderRadius: '18px',
+                                    overflow: 'hidden',
+                                    background: '#ffffff',
+                                    boxShadow:
+                                        '0 6px 18px rgba(0, 0, 0, 0.08)',
+                                    transition: 'transform 0.25s ease',
+                                }}
+                                onMouseEnter={(e) =>
+                                    (e.currentTarget.style.transform =
+                                        'translateY(-6px)')
+                                }
+                                onMouseLeave={(e) =>
+                                    (e.currentTarget.style.transform =
+                                        'translateY(0)')
+                                }
+                            >
+                                {/* ICONO */}
+                                <div
+                                    style={{
+                                        background: card.highlight
+                                            ? '#d9534f'
+                                            : '#f1f7ff',
+                                        padding: '22px 0',
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            width: '75px',
+                                            height: '75px',
+                                            borderRadius: '50%',
+                                            background: 'white',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            boxShadow:
+                                                '0 4px 12px rgba(0,0,0,0.1)',
+                                        }}
+                                    >
+                                        <span
+                                            style={{
+                                                fontSize: '2.4rem',
+                                                color: card.highlight
+                                                    ? 'red'
+                                                    : '#0d6efd',
+                                            }}
+                                        >
+                                            {card.icon}
+                                        </span>
+                                    </div>
                                 </div>
+
                                 <Card.Body className="text-center p-4">
-                                    <Card.Title className="fw-bold fs-4 mb-3">{card.title}</Card.Title>
-                                    <Card.Text className="text-muted mb-4">
+                                    {/* Título */}
+                                    <Card.Title
+                                        className="fw-bold mb-3"
+                                        style={{
+                                            fontSize: '1.35rem',
+                                            color: '#0b4a6f',
+                                        }}
+                                    >
+                                        {card.title}
+                                    </Card.Title>
+
+                                    {/* Descripción */}
+                                    <Card.Text
+                                        style={{
+                                            color: '#6e7a85',
+                                            fontSize: '0.95rem',
+                                            minHeight: '70px',
+                                        }}
+                                        className="mb-4"
+                                    >
                                         {card.desc}
                                     </Card.Text>
+
+                                    {/* Botón */}
                                     <Button
-                                        variant={card.highlight ? "outline-danger" : "outline-primary"}
                                         size="lg"
                                         className="w-100 rounded-pill"
-                                        onClick={() => navigate('/reserva')}
+                                        variant={
+                                            card.highlight
+                                                ? 'danger'
+                                                : 'primary'
+                                        }
+                                        style={{
+                                            padding: '12px 0',
+                                            fontWeight: '600',
+                                            letterSpacing: '0.3px',
+                                        }}
+                                        onClick={() => navigate('/reservar_cita')}
                                     >
                                         {card.btnText}
                                     </Button>
@@ -53,7 +154,7 @@ const SeasonalPromo = () => {
                     ))}
                 </Row>
             </Container>
-        </div>
+        </section>
     );
 };
 

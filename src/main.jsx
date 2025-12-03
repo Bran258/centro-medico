@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 
 /* --- TUS ESTILOS ORIGINALES (MANTENERLOS) --- */
 import "./index.css";
-import "./styles/HomeView.css";
 import './styles/SobreNosotros.css';
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "./styles/PeruvianHolidays.css";
 
 import App from "./App.jsx";

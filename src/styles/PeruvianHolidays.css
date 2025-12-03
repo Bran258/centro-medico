@@ -6,7 +6,7 @@
 body.theme-new-year {
     --primary-color: #ffd700;
     --secondary-color: #000000;
-    --text-light: #000000;
+    --text-light: #ffffff;
 }
 
 /* Confeti */
@@ -51,7 +51,7 @@ body.theme-inti-raymi .navbar {
 body.theme-peru {
     --primary-color: #D91023;
     --secondary-color: #FFFFFF;
-    --text-light: #FFFFFF;
+    --text-light: #000000;
 }
 
 /* Escarapela en Navbar */
@@ -109,6 +109,7 @@ body.theme-navidad {
     --primary-color: #1a1a2e;
     /* Noche */
     --secondary-color: #d42426;
+    
     /* Rojo Navidad */
     /* Animación Nieve */
     background-image:

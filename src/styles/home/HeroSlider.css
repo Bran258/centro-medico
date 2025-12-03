@@ -1,0 +1,120 @@
+/* CONTENEDOR GENERAL */
+.hero-slider-wrapper {
+  width: 100%;
+  max-height: 650px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* IMÁGENES */
+.hero-img {
+  height: 650px;
+  object-fit: cover;
+  filter: brightness(0.65);
+}
+
+/* CAPTION */
+.hero-content {
+  bottom: 18%;
+  text-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+  margin-top: 10px;
+}
+
+/* Botón personalizado de reservar */
+.btn-reservar {
+  background-color: #00a5c4;
+  color: white;
+  border-radius: 8px;
+  transition: 0.25s ease;
+}
+
+.btn-reservar:hover {
+  background-color: #0088a2;
+}
+
+/* INDICADORES (puntos) */
+.carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.6);
+}
+
+.carousel-indicators .active {
+  background-color: #00c0e6;
+}
+
+.seasonal-slide-wrapper {
+  width: 100%;
+  height: 100%;
+  background: white;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* FLECHAS */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%) grayscale(100%);
+  width: 40px;
+  height: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .hero-img {
+    height: 500px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-img {
+    height: 420px;
+  }
+
+  .hero-content {
+    bottom: 10%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-img {
+    height: 380px;
+  }
+
+  .hero-content {
+    bottom: 6%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+}
