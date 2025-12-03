@@ -1,0 +1,25 @@
+.card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.bg-gradient {
+    background: linear-gradient(180deg, #f8fbff 0%, #eaf3ff 100%);
+}
+
+.card-title {
+    letter-spacing: 0.3px;
+}
+
+/* 🔵 Círculos perfectos para los íconos */
+.icon-circle {
+    width: 100px;
+    /* mismo ancho */
+    height: 100px;
+    /* mismo alto → círculo perfecto */
+    border-radius: 50%;
+    /* forma circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
