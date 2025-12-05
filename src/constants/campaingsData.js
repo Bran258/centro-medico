@@ -10,7 +10,7 @@ export const campaigns = {
         id: 'lluvias',
         title: "⛈️ ALERTA DE TEMPORADA: PREVENCIÓN DENGUE",
         subtitle: "Atención prioritaria para cuadros febriles y respiratorios.",
-        bgColor: "#e3f2fd", // Azulito suave lluvia
+        bgColor: "transparent", // Azulito suave lluvia
         titleColor: "#0277bd",
         cards: [
             {
@@ -34,7 +34,7 @@ export const campaigns = {
         id: 'fin-anio',
         title: "🚑 EMERGENCIAS FIN DE AÑO",
         subtitle: "Traumatología y Cirugía Menor lista para atenderte.",
-        bgColor: "#ffebee", // Rojito emergencia
+        bgColor: "transparent", // Rojito emergencia
         titleColor: "#c62828",
         cards: [
             {
@@ -58,7 +58,7 @@ export const campaigns = {
         id: 'vitaminas',
         title: "⚡ RECARGA TU ENERGÍA 2026",
         subtitle: "Combate el agotamiento por calor.",
-        bgColor: "#fff8e1", // Amarillo energía
+        bgColor: "transparent", // Amarillo energía
         titleColor: "#f57f17",
         cards: [
             {
