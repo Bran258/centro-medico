@@ -1,86 +1,86 @@
-import React from "react";
 import "../../styles/contacto/ContactoView.css";
 
-const FORM_ENDPOINT =
-  import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/xxxxxxxx"; // <-- cambia por tu endpoint
-const LAT = -12.046374; // <-- pon tu latitud real
-const LNG = -77.042793; // <-- pon tu longitud real
+const LAT = -12.046374;
+const LNG = -77.042793;
 const MAP = `https://www.google.com/maps?q=${LAT},${LNG}&z=15&output=embed`;
 
-export default function Contactanos() {
+export default function Contactanos({ form, onChange, onSubmit, status }) {
   return (
     <main className="contact-page container">
       <header className="contact-header">
         <h1>Contáctanos</h1>
-        <p>
-          <strong>Emergencias 24/7:</strong>{" "}
-          <a href="tel:+51XXXXXXXXX">+51 X XXX XXX</a>
-        </p>
+        <p><strong>Emergencias 24/7:</strong> <a href="tel:+51XXXXXXXXX">+51 X XXX XXX</a></p>
       </header>
 
       <div className="contact-grid">
-        {/* Formulario */}
+
+        {/* FORMULARIO */}
         <section className="panel">
           <h2>Escríbenos</h2>
 
-          {/* Reemplaza FORM_ENDPOINT por tu servicio (Formspree / backend propio) */}
-          <form method="POST" action={FORM_ENDPOINT}>
+          <form onSubmit={onSubmit}>
             <div className="row">
               <p>
-                <label htmlFor="nombre">Nombre</label>
-                <input id="nombre" name="nombre" required />
+                <label>Nombre</label>
+                <input
+                  name="nombre"
+                  value={form.nombre}
+                  onChange={(e)=>onChange("nombre", e.target.value)}
+                  required
+                />
               </p>
+
               <p>
-                <label htmlFor="email">Correo</label>
-                <input id="email" type="email" name="email" required />
+                <label>Correo</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={(e)=>onChange("email", e.target.value)}
+                  required
+                />
               </p>
             </div>
 
             <p>
-              <label htmlFor="asunto">Asunto</label>
-              <input id="asunto" name="asunto" />
+              <label>Asunto</label>
+              <input
+                name="asunto"
+                value={form.asunto}
+                onChange={(e)=>onChange("asunto", e.target.value)}
+              />
             </p>
 
             <p>
-              <label htmlFor="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" rows="6" required />
+              <label>Mensaje</label>
+              <textarea
+                name="mensaje"
+                rows="6"
+                value={form.mensaje}
+                onChange={(e)=>onChange("mensaje", e.target.value)}
+                required
+              />
             </p>
 
-            <button className="btn" type="submit">
-              Enviar
+            <button type="submit" className="btn" disabled={status.sending}>
+              {status.sending ? "Enviando..." : "Enviar"}
             </button>
+
+            {status.ok && <p className="ok-msg">Mensaje enviado correctamente.</p>}
+            {status.ok === false && <p className="err-msg">Error: {status.error}</p>}
           </form>
         </section>
 
-        {/* Datos y mapa */}
+        {/* MAPA + DATOS */}
         <aside className="panel">
           <h2>Ubicación y horarios</h2>
 
-          <p>
-            <strong>Dirección:</strong> Av. Ejemplo 123, Distrito – Ciudad
-          </p>
-          <p>
-            <strong>Central:</strong>{" "}
-            <a href="tel:+51YYYYYYYYY">+51 Y YYY YYY</a>
-          </p>
-          <p>
-            <strong>WhatsApp:</strong>{" "}
-            <a
-              href="https://wa.me/51ZZZZZZZZZ"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Chatear
-            </a>
-          </p>
-          <p>
-            <strong>Horario:</strong> L–V 8:00–20:00 · S 8:00–14:00
-          </p>
+          <p><strong>Dirección:</strong> Av. Ejemplo 123</p>
+          <p><strong>Central:</strong> <a href="tel:+51YYYYYYYYY">+51 Y YYY YYY</a></p>
 
-          <h3>Cómo llegar</h3>
-          <iframe title="Mapa de la clínica" src={MAP} loading="lazy" />
-          <a
-            className="btn"
+          <iframe title="Mapa" src={MAP} loading="lazy" />
+
+          <a className="btn"
             href={`https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`}
             target="_blank"
             rel="noreferrer"

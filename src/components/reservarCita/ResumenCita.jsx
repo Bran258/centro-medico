@@ -1,6 +1,6 @@
 import "../../styles/reservarCita/ResumenCita.css";
-import { supabase } from "../../service/supabase";
 import Swal from "sweetalert2";
+import { registrarCita } from "../../service/citasService";
 
 export default function ResumenCita({ paciente, telefono, sintomas, fecha, hora, tipoCita }) {
 
@@ -8,85 +8,51 @@ export default function ResumenCita({ paciente, telefono, sintomas, fecha, hora,
 
     // VALIDACIÓN CAMPOS VACÍOS
     if (!paciente || !telefono || !sintomas || !fecha || !hora) {
-      Swal.fire({
-        icon: "warning",
-        title: "Campos incompletos",
-        text: "Completa todos los campos antes de registrar la cita."
-      });
+      Swal.fire({ icon: "warning", title: "Campos incompletos", text: "Completa todos los campos antes de registrar la cita." });
       return;
     }
 
     // VALIDACIÓN DEL TELÉFONO (9 dígitos)
     if (telefono.length !== 9) {
-      Swal.fire({
-        icon: "warning",
-        title: "Número inválido",
-        text: "El número de celular debe tener 9 dígitos."
-      });
+      Swal.fire({ icon: "warning", title: "Número inválido", text: "El número de celular debe tener 9 dígitos." });
       return;
     }
 
-    const fechaISO = fecha.toISOString().split("T")[0]; // YYYY-MM-DD
-
-    // INSERTAR EN SUPABASE
-    const { error } = await supabase
-      .from("citas")
-      .insert([
-        {
-          paciente,
-          telefono,
-          sintomas,
-          fecha: fechaISO,
-          hora,
-          tipo_cita: tipoCita,
-        }
-      ]);
-
-    if (error) {
+    try {
+      await registrarCita({ paciente, telefono, sintomas, fecha, hora, tipoCita });
+    } catch (error) {
+      Swal.fire({ icon: "error", title: "Error", text: "No se pudo guardar la cita." });
       console.error(error);
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "No se pudo guardar la cita."
-      });
       return;
     }
 
-    // MENSAJE COMPLETO PARA WHATSAPP
+    // MENSAJE PARA WHATSAPP
+    const fechaISO = fecha.toISOString().split("T")[0];
     const mensaje = encodeURIComponent(
-    `*Nueva solicitud de cita médica*
+      `*Nueva solicitud de cita médica*
 
-    *Datos del paciente*
-    • *Nombre:* ${paciente}
-    • *Tipo de atención:* ${tipoCita === "adulto" ? "Paciente adulto" : "Paciente menor de edad"}
-    • *Teléfono:* ${telefono}
+      *Datos del paciente*
+      • *Nombre:* ${paciente}
+      • *Tipo de atención:* ${tipoCita === "adulto" ? "Paciente adulto" : "Paciente menor de edad"}
+      • *Teléfono:* ${telefono}
 
-    *Detalles de la cita*
-    • *Fecha:* ${fechaISO}
-    • *Hora:* ${hora}
+      *Detalles de la cita*
+      • *Fecha:* ${fechaISO}
+      • *Hora:* ${hora}
 
-    *Motivo de consulta / Síntomas*
-    ${sintomas}
+      *Motivo de consulta / Síntomas*
+      ${sintomas}
 
-    Favor de confirmar disponibilidad o coordinar cualquier indicación adicional.`
+      Favor de confirmar disponibilidad o coordinar cualquier indicación adicional.`
     );
 
-
-    // 🚀 LEER NÚMERO DESDE .env
     const numeroDestino = import.meta.env.VITE_WHATSAPP_NUMERO;
 
-    Swal.fire({
-      icon: "success",
-      title: "Cita registrada",
-      text: "Tu cita ha sido registrada correctamente."
-    }).then(() => {
-
-      // Abrir WhatsApp automáticamente
-      window.open(`https://wa.me/${numeroDestino}?text=${mensaje}`, "_blank");
-
-      // Recargar página
-      window.location.reload();
-    });
+    Swal.fire({ icon: "success", title: "Cita registrada", text: "Tu cita ha sido registrada correctamente." })
+      .then(() => {
+        window.open(`https://wa.me/${numeroDestino}?text=${mensaje}`, "_blank");
+        window.location.reload();
+      });
   };
 
 

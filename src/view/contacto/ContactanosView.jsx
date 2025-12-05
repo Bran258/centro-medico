@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import Contactanos from "../../components/contacto/Contactanos.jsx";
+import { useState } from "react";
+import Contactanos from "../../components/contacto/Contactanos";
+import { sendContactMessage } from "../../service/contactService";  // <= AQUÍ
 
 export default function ContactanosView() {
   const [form, setForm] = useState({
@@ -12,36 +13,22 @@ export default function ContactanosView() {
   const [status, setStatus] = useState({ sending: false, ok: null, error: "" });
 
   const handleChange = (field, value) =>
-    setForm((prev) => ({ ...prev, [field]: value }));
+    setForm(prev => ({ ...prev, [field]: value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!form.nombre || !form.email || !form.mensaje) {
-      alert("Completa nombre, correo y mensaje.");
-      return;
-    }
+    setStatus({ sending: true, ok: null, error: "" });
 
     try {
-      setStatus({ sending: true, ok: null, error: "" });
-
-      // Usa tu endpoint de Formspree (configúralo en .env)
-      const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      if (!res.ok) throw new Error("No se pudo enviar el mensaje.");
+      await sendContactMessage(form);        // <= ENVÍA A SUPABASE
 
       setStatus({ sending: false, ok: true, error: "" });
       setForm({ nombre: "", email: "", asunto: "", mensaje: "" });
-    } catch (err) {
-      setStatus({ sending: false, ok: false, error: err.message });
+
+      setTimeout(() => setStatus({ sending: false, ok: null, error: "" }), 3000);
+
+    } catch (error) {
+      setStatus({ sending: false, ok: false, error: error.message });
     }
   };
 
