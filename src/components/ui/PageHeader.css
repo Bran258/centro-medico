@@ -1,0 +1,23 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.page-header-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.page-header-subtitle {
+  font-size: 15px;
+  color: #64748b;
+}

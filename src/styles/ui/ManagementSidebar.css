@@ -1,0 +1,142 @@
+/* ===================================== */
+/* VARIABLES DEL SIDEBAR ADMIN           */
+/* ===================================== */
+:root {
+    --sidebarAdmin-bg: #ffffff;
+    --sidebarAdmin-text: #202020;
+    --sidebarAdmin-text-light: #4b4b4b;
+
+    --sidebarAdmin-primary: #ec7717;
+    --sidebarAdmin-hover: rgba(19, 127, 236, 0.1);
+
+    --sidebarAdmin-active-bg: #137fec;
+    --sidebarAdmin-active-text: #ffffff;
+
+    --sidebarAdmin-width: 260px;
+    --sidebarAdmin-padding: 16px;
+    --sidebarAdmin-radius: 10px;
+
+    --sidebarAdmin-icon-size: 22px;
+    --sidebarAdmin-gap: 14px;
+
+    --sidebarAdmin-transition: 0.25s ease;
+}
+
+/* ===================================== */
+/* SIDEBAR STRUCTURE (ESTÁTICO)          */
+/* ===================================== */
+.sidebarAdmin {
+    width: var(--sidebarAdmin-width);
+    background: var(--sidebarAdmin-bg);
+    border-right: 1px solid #e5e7eb;
+    height: 100%;                /* Sidebar ocupa toda la altura del layout */
+    padding: var(--sidebarAdmin-padding);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-sizing: border-box;
+
+    /* Sidebar estático: no scroll, no movimiento */
+    position: relative;          
+    top: 0;
+    left: 0;
+    overflow: hidden;            /* IMPORTANTE: evita scroll dentro del sidebar */
+}
+
+/* ===================================== */
+/* HEADER                                */
+/* ===================================== */
+.sidebarAdmin-header {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e6e6e6;
+
+    /* Título centrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebarAdmin-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--sidebarAdmin-text);
+    text-align: center;
+}
+
+/* ===================================== */
+/* MENU LIST                             */
+/* ===================================== */
+.sidebarAdmin-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarAdmin-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ===================================== */
+/* MENU ITEMS                            */
+/* ===================================== */
+.sidebarAdmin-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sidebarAdmin-gap);
+    padding: 10px 12px;
+    border-radius: var(--sidebarAdmin-radius);
+    color: var(--sidebarAdmin-text-light);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+
+    transition: background var(--sidebarAdmin-transition),
+                color var(--sidebarAdmin-transition),
+                transform var(--sidebarAdmin-transition);
+}
+
+.sidebarAdmin-icon {
+    font-size: var(--sidebarAdmin-icon-size);
+}
+
+/* Hover */
+.sidebarAdmin-item:hover {
+    background: var(--sidebarAdmin-hover);
+    color: var(--sidebarAdmin-primary);
+    transform: translateX(4px);
+}
+
+/* Active Route */
+.sidebarAdmin-item.active {
+    background: var(--sidebarAdmin-active-bg);
+    color: var(--sidebarAdmin-active-text);
+}
+
+.sidebarAdmin-item.active .sidebarAdmin-icon {
+    color: var(--sidebarAdmin-active-text);
+}
+
+/* ===================================== */
+/* RESPONSIVE                            */
+/* ===================================== */
+@media (max-width: 900px) {
+    .sidebarAdmin {
+        width: 200px;
+    }
+}
+
+@media (max-width: 700px) {
+    .sidebarAdmin {
+        /* Sidebar móvil sigue siendo estático */
+        width: 200px;
+        height: 100%;
+        position: relative;
+        top: 0;
+    }
+}
