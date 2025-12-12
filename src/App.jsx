@@ -21,6 +21,7 @@ import Unauthorized from "./error/Unauthorized.jsx";
 import LoginView from "./view/auth/LoginView.jsx";
 import PublicRoute from "./routers/PublicRoute.jsx";
 import UsuariosView from "./view/admin/UsuariosView.jsx";
+import PaginaNoEncontrada from "./error/404Page.jsx";
 
 function App() {
   return (
@@ -63,7 +64,7 @@ function App() {
         </Route>
 
         {/* 404 */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<PaginaNoEncontrada />} />
 
       </Routes>
     </BrowserRouter>

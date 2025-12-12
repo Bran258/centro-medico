@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useSession } from "@/hooks/auth/useSession";
 import { useEffect, useState } from "react";
 import { supabase } from "@/service/supabase";
-import Loading from "../error/Loading";
+import Loading from "@/error/Loading";
 
 export default function PublicRoute({ children }) {
   const { session, loading } = useSession();
@@ -32,7 +32,6 @@ export default function PublicRoute({ children }) {
 
   if (loading || checking) return <Loading />;
 
-  // Si ya inició sesión → redirigir según rol
   if (session?.user?.id) {
     if (role === "admin") return <Navigate to="/panel/admin" replace />;
     return <Navigate to="/" replace />;
