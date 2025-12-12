@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@supabase/supabase-js": "^2.86.0",
+    "@supabase/supabase-js": "^2.87.1",
     "@tailwindcss/vite": "^4.1.17",
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
