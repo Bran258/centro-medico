@@ -1,43 +1,71 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// src/App.jsx
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Layout
 import MainLayout from "./layouts/MainLayout";
 
-// Vistas
-import HomeView from "./view/home/HomeView.jsx";
-import ReservarCitaView from "./view/reservaCita/ReservarCitaView.jsx";
-import SobreNosotrosView from "./view/sobrenosotros/SobreNosotrosView.jsx";
-import AdminSettings from "./view/admin/AdminSettings.jsx";
-import ContactanosView from "./view/contacto/ContactanosView.jsx";
-import EspecialidadesSection from "./components/especialidades/EspecialidadesSection.jsx";
-import ConsultasView from "./view/consultas/ConsultasView.jsx";
-// Importamos el Guardian de seguridad (Asegurate que la ruta coincida donde creaste el archivo)
-import AdminGuard from "./components/auth/AdminGuard.jsx";
+// Client Views
+import HomeView from "./view/client/home/HomeView.jsx";
+import ReservarCitaView from "./view/client/reservaCita/ReservarCitaView.jsx";
+import SobreNosotrosView from "./view/client/sobrenosotros/SobreNosotrosView.jsx";
+import ContactanosView from "./view/client/contacto/ContactanosView.jsx";
+import EspecialidadesSection from "./components/client/especialidades/EspecialidadesSection.jsx";
+
+// Admin Layout + Vistas
+import AdminLayoutView from "./layouts/AdminLayoutView.jsx";
+import DashboardAdminView from "./view/admin/DashboardAdminView.jsx";
+
+// Rutas protegidas
+import { PrivateRoutes } from "@/routers/PrivateRoutes";
+import Unauthorized from "./error/Unauthorized.jsx";
+import LoginView from "./view/auth/LoginView.jsx";
+import PublicRoute from "./routers/PublicRoute.jsx";
+import UsuariosView from "./view/admin/UsuariosView.jsx";
+import PaginaNoEncontrada from "./error/404Page.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* --- RUTAS PRINCIPALES CON LAYOUT --- */}
+
+        {/* LOGIN */}
+        <Route
+          path="/login/admin"
+          element={
+            <PublicRoute>
+              <LoginView />
+            </PublicRoute>
+          }
+        />
+
+        {/* PANEL ADMIN */}
+        <Route
+          path="/panel/admin"
+          element={
+            <PrivateRoutes allowed={["admin"]}>
+              <AdminLayoutView />
+            </PrivateRoutes>
+          }
+        >
+          <Route index element={<DashboardAdminView />} />
+          <Route path="/panel/admin/usuarios" element={<UsuariosView />} />
+        </Route>
+
+        {/* UNAUTHORIZED */}
+        <Route path="/unauthorized" element={<Unauthorized />} />
+
+        {/* CLIENTE */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomeView />} />
-          <Route path="/consultar" element={<ConsultasView />} />
           <Route path="/reservar_cita" element={<ReservarCitaView />} />
           <Route path="/sobre_nosotros" element={<SobreNosotrosView />} />
           <Route path="/contactanos" element={<ContactanosView />} />
           <Route path="/especialidades" element={<EspecialidadesSection />} />
         </Route>
 
-        {/* --- RUTA PROTEGIDA DE ADMIN --- */}
-        <Route
-          path="/admin"
-          element={
-            // Aquí envolvemos el AdminSettings con el AdminGuard
-            <AdminGuard>
-              <AdminSettings />
-            </AdminGuard>
-          }
-        />
+        {/* 404 */}
+        <Route path="*" element={<PaginaNoEncontrada />} />
+
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,147 @@
+/* ============================ */
+/* ROOT VARIABLES PARA LOADING */
+/* ============================ */
+:root {
+  /* Colores generales */
+  --loading-primary: #137fec;
+  --loading-bg-light: #f6f7f8;
+
+  --loading-text-dark: #0d141b;
+  --loading-text-gray: #64748b;
+
+  --loading-progress-bg: #e2e8f0;
+  --loading-progress-fill: var(--loading-primary);
+
+  /* Spinner colores */
+  --loading-spinner-top: #137fec;
+  --loading-spinner-right: #f97316;
+  --loading-spinner-bottom: #ef4444;
+  --loading-spinner-left: transparent;
+
+  /* Tamaños */
+  --loading-spinner-size: 96px;
+  --loading-spinner-border: 8px;
+
+  --loading-title-size: 32px;
+  --loading-max-width: 400px;
+
+  /* Espaciados */
+  --loading-padding: 20px;
+  --loading-gap: 16px;
+
+  /* Animaciones */
+  --loading-spinner-speed: 1s;
+}
+
+/* ============================ */
+/* CONTENEDOR PRINCIPAL */
+/* ============================ */
+.loading-root {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--loading-bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================ */
+/* CONTENEDOR INTERNO */
+/* ============================ */
+.loading-container {
+  max-width: var(--loading-max-width);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--loading-gap);
+  padding: var(--loading-padding);
+}
+
+/* ============================ */
+/* SPINNER (centrado correctamente) */
+/* ============================ */
+.loading-spinner-wrapper {
+  margin-bottom: 20px;
+  display: flex;             
+  justify-content: center;   
+  align-items: center;       
+  width: 100%;               
+}
+
+.loading-spinner {
+  height: var(--loading-spinner-size);
+  width: var(--loading-spinner-size);
+  border-radius: 50%;
+  border-style: solid;
+  border-width: var(--loading-spinner-border);
+  border-top-color: var(--loading-spinner-top);
+  border-right-color: var(--loading-spinner-right);
+  border-bottom-color: var(--loading-spinner-bottom);
+  border-left-color: var(--loading-spinner-left);
+  box-sizing: border-box;
+
+  animation: loading-spin var(--loading-spinner-speed) linear infinite;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================ */
+/* TÍTULO */
+/* ============================ */
+.loading-title {
+  font-size: var(--loading-title-size);
+  font-weight: 700;
+  color: var(--loading-text-dark);
+}
+
+/* ============================ */
+/* TEXTO Y PROGRESO */
+/* ============================ */
+.loading-progress-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.loading-text {
+  color: var(--loading-text-gray);
+  font-size: 16px;
+}
+
+.loading-progress-bg {
+  width: 100%;
+  height: 8px;
+  background: var(--loading-progress-bg);
+  border-radius: 9999px;
+}
+
+.loading-progress-fill {
+  height: 8px;
+  width: 0%;
+  background: var(--loading-progress-fill);
+  border-radius: 9999px;
+  animation: loading-bar 2.2s ease-in-out infinite;
+}
+
+@keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+  40% {
+    width: 65%;
+  }
+  80% {
+    width: 90%;
+  }
+  100% {
+    width: 0%;
+  }
+}

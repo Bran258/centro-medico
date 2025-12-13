@@ -1,0 +1,8 @@
+.view-login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f8f7f6;
+  padding: 20px;
+}

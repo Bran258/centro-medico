@@ -1,0 +1,152 @@
+/* =============================== */
+/* ROOT VARIABLES - NAVBAR ADMIN  */
+/* =============================== */
+:root {
+    /* Fondo general del topbar */
+    --navbarAdmin-bg: #ffffff;
+    --navbarAdmin-border: #e5e7eb;
+
+    /* Texto */
+    --navbarAdmin-text: #2d2d2d;
+
+    /* Colores corporativos */
+    --navbarAdmin-primary: #137fec;
+    --navbarAdmin-secondary: #f97316;
+    --navbarAdmin-danger: #ef4444;
+    --navbarAdmin-light: #f5f5f5;
+
+    /* Estilos */
+    --navbarAdmin-radius: 10px;
+    --navbarAdmin-padding-y: 10px;
+    --navbarAdmin-padding-x: 16px;
+
+    --navbarAdmin-icon-size: 22px;
+    --navbarAdmin-gap: 10px;
+
+    /* Layout */
+    --navbarAdmin-height: 64px;
+
+    /* Animaciones */
+    --navbarAdmin-transition: 0.25s ease;
+}
+
+/* =============================== */
+/* TOPBAR GENERAL */
+/* =============================== */
+.mg-nav {
+    width: 100%;
+    height: var(--navbarAdmin-height);
+    background: var(--navbarAdmin-bg);
+    border-bottom: 1px solid var(--navbarAdmin-border);
+    padding: 0 var(--navbarAdmin-padding-x);
+
+    display: flex;
+    justify-content: space-between;
+    /* LOGO IZQUIERDA – MENÚ DERECHA */
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* =============================== */
+/* LOGO IZQUIERDA */
+/* =============================== */
+.mg-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mg-nav-logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+}
+
+.mg-nav-logo-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navbarAdmin-text);
+}
+
+/* =============================== */
+/* MENÚ DERECHO (HORIZONTAL) */
+/* =============================== */
+.mg-nav-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* =============================== */
+/* BOTONES */
+/* =============================== */
+.mg-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--navbarAdmin-gap);
+
+    padding: 8px 14px;
+
+    background: var(--navbarAdmin-light);
+    border: none;
+    border-radius: var(--navbarAdmin-radius);
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navbarAdmin-text);
+
+    transition: background var(--navbarAdmin-transition),
+        color var(--navbarAdmin-transition),
+        transform var(--navbarAdmin-transition);
+}
+
+/* ICONOS */
+.mg-nav-icon {
+    font-size: var(--navbarAdmin-icon-size);
+}
+
+/* HOVER */
+.mg-nav-btn:hover {
+    background: var(--navbarAdmin-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* =============================== */
+/* BOTÓN LOGOUT */
+/* =============================== */
+.mg-nav-btn.logout {
+    background: var(--navbarAdmin-danger);
+    color: white;
+}
+
+.mg-nav-btn.logout:hover {
+    background: #d62828;
+    transform: translateY(-2px);
+}
+
+/* =============================== */
+/* RESPONSIVE */
+/* =============================== */
+@media (max-width: 768px) {
+    .mg-nav {
+        flex-direction: column;
+        height: auto;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .mg-nav-logo-title {
+        font-size: 16px;
+    }
+}

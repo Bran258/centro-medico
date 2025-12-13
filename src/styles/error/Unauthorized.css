@@ -1,0 +1,156 @@
+/* ============================ */
+/* VARIABLES ROOT PARA UNAUTHORIZED */
+/* ============================ */
+:root {
+  /* Colores */
+  --unauth-primary: #ec7f13;
+
+  --unauth-bg-light: #f8f7f6;
+  --unauth-text-light: #3b3b3b;
+
+  --unauth-text-gray-1: #6b7280;
+  --unauth-text-gray-2: #737373;
+
+  --unauth-alert-light: #fee2e2;
+  --unauth-alert-red: #dc2626;
+
+  /* Tipografía */
+  --unauth-font-main: "Inter", sans-serif;
+
+  /* Iconos */
+  --unauth-icon-size-lg: 48px;
+  --unauth-icon-circle-size: 96px;
+
+  /* Contenedores */
+  --unauth-max-box-width: 500px;
+  --unauth-max-text-width: 460px;
+
+  /* Espaciados */
+  --unauth-space-xs: 4px;
+  --unauth-space-md: 16px;
+  --unauth-space-lg: 24px;
+
+  /* Botón */
+  --unauth-btn-height: 44px;
+  --unauth-btn-radius: 8px;
+  --unauth-btn-padding-x: 24px;
+
+  /* Transiciones */
+  --unauth-transition-fast: 0.25s ease;
+
+  font-family: var(--unauth-font-main);
+}
+
+/* ============================ */
+/* CONTENEDOR PRINCIPAL */
+/* ============================ */
+.unauth-root {
+  height: 100vh;
+  width: 100%;
+  background: var(--unauth-bg-light);
+  color: var(--unauth-text-light);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================ */
+/* MAIN CENTRADO */
+/* ============================ */
+.unauth-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--unauth-space-md);
+}
+
+.unauth-box {
+  max-width: var(--unauth-max-box-width);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--unauth-space-lg);
+}
+
+/* ============================ */
+/* ICONO */
+/* ============================ */
+.unauth-icon-circle {
+  height: var(--unauth-icon-circle-size);
+  width: var(--unauth-icon-circle-size);
+  border-radius: 50%;
+  background: var(--unauth-alert-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.unauth-lock-icon {
+  font-size: var(--unauth-icon-size-lg);
+  color: var(--unauth-alert-red);
+}
+
+/* ============================ */
+/* TEXTOS */
+/* ============================ */
+.unauth-texts {
+  max-width: var(--unauth-max-text-width);
+  margin: 0 auto;
+}
+
+.unauth-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--unauth-alert-red);
+}
+
+.unauth-description {
+  font-size: 16px;
+  color: var(--unauth-text-gray-1);
+}
+
+.unauth-error {
+  font-size: 14px;
+  color: var(--unauth-text-gray-2);
+  margin-top: var(--unauth-space-xs);
+}
+
+/* ============================ */
+/* BOTÓN */
+/* ============================ */
+.unauth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--unauth-btn-height);
+  padding: 0 var(--unauth-btn-padding-x);
+  background: var(--unauth-primary);
+  color: white;
+  border-radius: var(--unauth-btn-radius);
+  font-weight: bold;
+  text-decoration: none;
+  transition: opacity var(--unauth-transition-fast);
+}
+
+.unauth-btn:hover {
+  opacity: 0.9;
+}
+
+/* ============================ */
+/* LINK SOPORTE */
+/* ============================ */
+.unauth-support {
+  font-size: 14px;
+  color: var(--unauth-text-gray-1);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color var(--unauth-transition-fast);
+}
+
+.unauth-support:hover {
+  color: var(--unauth-primary);
+}
+
+

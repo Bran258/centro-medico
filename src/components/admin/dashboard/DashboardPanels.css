@@ -1,0 +1,314 @@
+/* ==================================================== */
+/* VARIABLES GLOBALES */
+/* ==================================================== */
+:root {
+  --DashboardPanels-primary: #ffffff;
+  --DashboardPanels-secondary: #ff7b00;
+  --DashboardPanels-danger: #ff3b30;
+  --DashboardPanels-info: #3b82f6;
+
+  --DashboardPanels-border: #e5e7eb;
+  --DashboardPanels-text-dark: #1f2937;
+  --DashboardPanels-text-gray: #6b7280;
+
+  --DashboardPanels-radius: 14px;
+  --DashboardPanels-gap: 1.3rem;
+}
+
+/* ==================================================== */
+/* GRID + ORDEN PERSONALIZADO */
+/* ==================================================== */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--DashboardPanels-gap);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* 1. RENDIMIENTO DE CITAS – PANEL COMPLETO */
+.dash-panel:nth-child(1) {
+  grid-column: 1 / 3;
+}
+
+/* 2. TAREAS – IZQUIERDA */
+.dash-panel:nth-child(2) {
+  grid-column: 1 / 2;
+}
+
+/* 3. HORARIOS – DERECHA */
+.dash-panel:nth-child(3) {
+  grid-column: 2 / 3;
+}
+
+/* 4. PRÓXIMAS CITAS – PANEL COMPLETO */
+.dash-panel:nth-child(4) {
+  grid-column: 1 / 3;
+}
+
+/* ==================================================== */
+/* PANEL BASE */
+/* ==================================================== */
+.dash-panel {
+  background: var(--DashboardPanels-primary);
+  border-radius: var(--DashboardPanels-radius);
+  padding: 1.6rem;
+  border: 1px solid var(--DashboardPanels-border);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.medium {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ==================================================== */
+/* HEADER DE PANEL */
+/* ==================================================== */
+.dash-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dash-panel-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--DashboardPanels-text-dark);
+}
+
+.dash-panel-subtitle {
+  font-size: 0.85rem;
+  margin-top: 2px;
+  color: var(--DashboardPanels-text-gray);
+}
+
+.spaced {
+  margin-bottom: 0.6rem;
+}
+
+.dash-link-primary {
+  color: var(--DashboardPanels-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.dash-link-primary:hover {
+  opacity: 0.8;
+}
+
+/* ==================================================== */
+/* INDICADOR DE CRECIMIENTO */
+/* ==================================================== */
+.dash-growth {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.dash-grid .green {
+  color: #16a34a;
+}
+
+/* ==================================================== */
+/* GRÁFICO DE BARRAS – CORREGIDO HORIZONTAL */
+/* ==================================================== */
+.dash-chart {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.day-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 6px;
+}
+
+.dash-bar {
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.dash-chart p {
+  font-size: 0.82rem;
+  color: var(--DashboardPanels-text-gray);
+}
+
+.bg-light {
+  background: rgba(255, 123, 0, 0.22);
+}
+
+.bg-strong {
+  background: var(--DashboardPanels-secondary);
+}
+
+/* ==================================================== */
+/* TAREAS Y NOTIFICACIONES */
+/* ==================================================== */
+.sidebar-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dash-task {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dash-task-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-grid .blue {
+  background: var(--DashboardPanels-info);
+  color: white;
+}
+
+.dash-grid .red {
+  background: var(--DashboardPanels-danger);
+  color: white;
+}
+
+.dash-grid .dash-task-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--DashboardPanels-text-dark);
+}
+
+.dash-grid .dash-task-time {
+  font-size: 0.82rem;
+  color: var(--DashboardPanels-text-gray);
+}
+
+.pagination-demo {
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--DashboardPanels-text-gray);
+  margin-top: 0.5rem;
+}
+
+/* ==================================================== */
+/* HORARIOS CON ALTA DEMANDA */
+/* ==================================================== */
+.hours-full-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.6rem;
+}
+
+.hours-full-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 0.4rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  font-size: 0.95rem;
+  color: var(--DashboardPanels-text-dark);
+}
+
+.hours-full-list b {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--DashboardPanels-secondary);
+  font-weight: 600;
+}
+
+/* ==================================================== */
+/* PRÓXIMAS CITAS */
+/* ==================================================== */
+.dash-appointments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.dash-appointment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 1.1rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dash-appointment-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dash-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #d1d5db;
+}
+
+.dash-appointment-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--DashboardPanels-text-dark);
+}
+
+.dash-appointment-info {
+  font-size: 0.82rem;
+  color: var(--DashboardPanels-text-gray);
+}
+
+.dash-appointment-doctor {
+  font-weight: 600;
+  color: var(--DashboardPanels-text-dark);
+  font-size: 0.92rem;
+}
+
+/* ==================================================== */
+/* RESPONSIVE */
+/* ==================================================== */
+@media (max-width: 1024px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-panel:nth-child(1),
+  .dash-panel:nth-child(2),
+  .dash-panel:nth-child(3),
+  .dash-panel:nth-child(4) {
+    grid-column: 1 / 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .dash-panel {
+    padding: 1.2rem;
+  }
+
+  .dash-chart {
+    gap: 6px;
+  }
+
+  .dash-bar {
+    height: 60px;
+  }
+}

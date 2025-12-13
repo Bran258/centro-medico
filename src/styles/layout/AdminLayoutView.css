@@ -1,0 +1,64 @@
+/* ======================================== */
+/* ROOT VARIABLES PARA ADMIN LAYOUT         */
+/* ======================================== */
+:root {
+  --adminLayout-bg: #f0f2f5;
+  --adminLayout-content-bg: #ffffff;
+
+  --adminLayout-content-padding: 24px;
+  --adminLayout-height: 100vh;
+
+  --adminLayout-sidebar-width: 260px;
+  --adminLayout-topbar-height: 64px;
+
+  --adminLayout-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+  --adminLayout-radius: 12px;
+}
+
+/* ======================================== */
+/* CONTENEDOR PRINCIPAL */
+/* ======================================== */
+.admin-layout {
+  width: 100%;
+  height: var(--adminLayout-height);
+  background: var(--adminLayout-bg);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ======================================== */
+/* SIDEBAR + MAIN BODY */
+/* ======================================== */
+.admin-layout-body {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: calc(100vh - var(--adminLayout-topbar-height));
+  overflow: hidden; /* IMPORTANTE para que solo el main scrollee */
+}
+
+/* ======================================== */
+/* ESPACIO RESERVADO PARA EL SIDEBAR */
+/* ======================================== */
+.admin-sidebar-space {
+  width: var(--adminLayout-sidebar-width);
+  flex-shrink: 0;
+  height: 100%;
+}
+
+/* ======================================== */
+/* MAIN CON SCROLL */
+/* ======================================== */
+.admin-content {
+  flex: 1;
+  background: var(--adminLayout-content-bg);
+  padding: var(--adminLayout-content-padding);
+
+  height: 100%;
+  overflow-y: auto; /* AQUÍ ACTIVAS EL SCROLL SOLO EN MAIN */
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+}

@@ -1,0 +1,135 @@
+/* ========================================= */
+/* VARIABLES GLOBALES */
+/* ========================================= */
+:root {
+  /* Colores base */
+  --StatsSection-primary: #ffffff;
+  --StatsSection-secondary: #ff7b00; /* naranja */
+  --StatsSection-danger: #ff3b30; /* rojo */
+  --StatsSection-info: #3b82f6; /* azul */
+
+  /* Glassmorphism */
+  --StatsSection-glass-bg: rgba(255, 255, 255, 0.25);
+  --StatsSection-glass-border: rgba(255, 255, 255, 0.35);
+  --StatsSection-shadow: rgba(0, 0, 0, 0.08);
+  --StatsSection-shadow-hover: rgba(0, 0, 0, 0.15);
+
+  /* Textos */
+  --StatsSection-text-dark: #111;
+  --StatsSection-text-gray: #4a4a4a;
+
+  /* Tamaños */
+  --StatsSection-radius: 1.2rem;
+}
+
+
+/* ========================================= */
+/* CONTENEDOR GENERAL */
+/* ========================================= */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+
+/* ========================================= */
+/* TARJETAS */
+/* ========================================= */
+.dash-card {
+  background: var(--StatsSection-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.6rem;
+  border-radius: var(--StatsSection-radius);
+  border: 1px solid var(--StatsSection-glass-border);
+  box-shadow: 0 8px 20px var(--StatsSection-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.dash-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 26px var(--StatsSection-shadow-hover);
+}
+
+
+/* ========================================= */
+/* TEXTOS */
+/* ========================================= */
+.dash-card-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--StatsSection-text-gray);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+}
+
+.dash-card-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--StatsSection-text-dark);
+  margin-bottom: 0.6rem;
+  animation: fadeSlide 0.6s ease;
+}
+
+
+/* ========================================= */
+/* TENDENCIAS */
+/* ========================================= */
+.dash-card-trend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.icon-trend {
+  font-size: 1.3rem;
+}
+
+
+/* Colores de tendencia usando variables */
+.dash-stats .green {
+  color: var(--StatsSection-secondary); /* naranja */
+}
+
+.dash-stats .red {
+  color: var(--StatsSection-danger);
+}
+
+.dash-stats .gray {
+  color: var(--StatsSection-info); /* azul */
+}
+
+
+/* ========================================= */
+/* ANIMACIÓN */
+/* ========================================= */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================================= */
+/* RESPONSIVE                               */
+/* ======================================= */
+@media (max-width: 1000px) {
+  .dash-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dash-stats {
+    grid-template-columns: 1fr;
+  }
+}

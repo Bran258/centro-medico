@@ -1,0 +1,38 @@
+/* BOTÓN PRINCIPAL DEL DASHBOARD */
+.dash-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0.65rem 1.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  background: linear-gradient(90deg, #ff7b00, #ff5400);
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(255, 85, 0, 0.25);
+}
+
+/* Hover animado */
+.dash-btn-primary:hover {
+  background: linear-gradient(90deg, #ff6a00, #ff3b00);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 85, 0, 0.35);
+}
+
+/* Efecto clic */
+.dash-btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* Ajuste para ícono de react-icons */
+.dash-btn-primary svg {
+  width: 20px;
+  height: 20px;
+}
+
