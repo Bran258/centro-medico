@@ -1,4 +1,4 @@
-import "../../../styles/contacto/ContactoView.css";
+import "@/styles/client/contacto/ContactoView.css";
 
 const LAT = -12.046374;
 const LNG = -77.042793;

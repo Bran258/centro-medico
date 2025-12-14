@@ -1,4 +1,4 @@
-import "../../../styles/reservarCita/ResumenCita.css";
+import "@/styles/client/reservarCita/ResumenCita.css";
 import Swal from "sweetalert2";
 import { registrarCita } from "../../../service/citasService";
 

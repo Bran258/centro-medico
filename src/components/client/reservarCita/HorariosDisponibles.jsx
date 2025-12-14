@@ -1,4 +1,4 @@
-import "../../../styles/reservarCita/HorariosDisponibles.css";
+import "@/styles/client/reservarCita/HorariosDisponibles.css";
 
 export default function HorariosDisponibles({ selectedHour, setSelectedHour }) {
 

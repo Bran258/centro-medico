@@ -4,7 +4,7 @@ import StepCalendario from "../../../components/client/reservarCita/StepCalendar
 import HorariosDisponibles from "../../../components/client/reservarCita/HorariosDisponibles";
 import ResumenCita from "../../../components/client/reservarCita/ResumenCita";
 
-import "@/styles/reservarCita/ReservarCitaView.css";
+import "@/styles/client/reservarCita/ReservarCitaView.css";
 
 export default function ReservarCitaView() {
   const [selectedDay, setSelectedDay] = useState(null);

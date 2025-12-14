@@ -1,0 +1,142 @@
+/* Contenedor Principal */
+.consultas-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Encabezado */
+.consultas-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.consultas-header h1 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.consultas-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Formulario de Búsqueda */
+.consultas-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.consultas-input {
+    padding: 12px 15px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.consultas-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.consultas-btn {
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.consultas-btn:hover {
+    background-color: #0056b3;
+}
+
+.consultas-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Grid de Resultados */
+.resultados-grid {
+    display: grid;
+    gap: 20px;
+}
+
+/* Tarjeta de Cita */
+.cita-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: transform 0.2s;
+}
+
+.cita-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-info h3 {
+    margin: 0 0 8px 0;
+    color: #333;
+}
+
+.badge-especialidad {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fecha-info {
+    text-align: right;
+}
+
+.fecha-label {
+    margin: 0;
+    font-size: 13px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.fecha-valor {
+    margin: 5px 0 0 0;
+    color: #2e7d32;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Estado Vacío (No encontrado) */
+.no-results {
+    text-align: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px dashed #ccc;
+}
+
+.emoji-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}

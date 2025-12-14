@@ -1,7 +1,7 @@
 // src/components/HeroSlider.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../../styles/home/HeroSlider.css";
+import "@/styles/client/home/HeroSlider.css";
 import SeasonalPromo from "../../SeasonalPromo";
 
 export default function HeroSlider() {
