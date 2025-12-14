@@ -1,4 +1,4 @@
-import "../../../styles/reservarCita/StepPaciente.css";
+import "@/styles/client/reservarCita/StepPaciente.css";
 
 export default function StepPaciente({ 
   paciente, setPaciente,

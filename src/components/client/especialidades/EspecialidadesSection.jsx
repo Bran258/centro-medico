@@ -1,6 +1,6 @@
 // src/components/EspecialidadesSection.jsx
 import React from "react";
-import "../../../styles/especialidades/EspecialidadesSection.css";
+import "@/styles/client/especialidades/EspecialidadesSection.css";
 
 import { 
   FaChild, 

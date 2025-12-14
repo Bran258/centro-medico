@@ -1,6 +1,6 @@
 // src/components/WelcomeSection.jsx
 import React from "react";
-import "../../../styles/home/WelcomeSection.css";
+import "@/styles/client/home/WelcomeSection.css";
 import { Link } from "react-router-dom";
 
 export default function WelcomeSection() {

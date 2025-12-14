@@ -1,44 +1,25 @@
-// src/routers/PrivateRoutes.jsx
 import { Navigate } from "react-router-dom";
-import { useSession } from "@/hooks/auth/useSession";
-import { useEffect, useState } from "react";
-import { supabase } from "@/service/supabase";
-import Loading from "@/error/Loading";
+import { useAuth } from "@/context/AuthContext";
+import Loading from "@/error/Loading"; // Asegúrate que este componente exista o usa un simple <div>Cargando...</div>
 
 export function PrivateRoutes({ children, allowed }) {
-  const { session, loading } = useSession();
-  const [role, setRole] = useState(null);
-  const [checking, setChecking] = useState(true);
-
-  useEffect(() => {
-    async function loadRole() {
-      if (!session?.user?.id) {
-        setChecking(false);
-        return;
-      }
-
-      const { data } = await supabase
-        .from("usuarios")
-        .select("role")
-        .eq("id", session.user.id)
-        .single();
-
-      setRole(data?.role || null);
-      setChecking(false);
-    }
-
-    if (!loading) loadRole();
-  }, [loading, session]);
+  const { user, isAuthenticated, loading } = useAuth();
 
   if (loading) return <Loading />;
 
-  if (!session?.user?.id)
+  // 1. Si no está logueado -> Login
+  if (!isAuthenticated) {
     return <Navigate to="/login/admin" replace />;
+  }
 
-  if (checking) return <Loading />;
+  // 2. Normalizar roles (Backend envía "ADMIN", App espera "admin")
+  const userRole = user?.rol ? user.rol.toLowerCase() : "";
+  const allowedRoles = allowed.map(r => r.toLowerCase());
 
-  if (!allowed.includes(role))
+  // 3. Si no tiene permiso -> Unauthorized
+  if (!allowedRoles.includes(userRole)) {
     return <Navigate to="/unauthorized" replace />;
+  }
 
   return children;
 }

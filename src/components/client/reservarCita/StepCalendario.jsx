@@ -1,6 +1,6 @@
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import "../../../styles/reservarCita/StepCalendario.css";
+import "@/styles/client/reservarCita/StepCalendario.css";
 
 export default function StepCalendario({ selectedDay, setSelectedDay }) {
   return (

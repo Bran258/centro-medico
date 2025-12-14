@@ -14,7 +14,7 @@ import EspecialidadesSection from "./components/client/especialidades/Especialid
 // Admin Layout + Vistas
 import AdminLayoutView from "./layouts/AdminLayoutView.jsx";
 import DashboardAdminView from "./view/admin/DashboardAdminView.jsx";
-
+import DashboardMedicoView from "./view/medico/DashboardMedicoView.jsx";
 // Rutas protegidas
 import { PrivateRoutes } from "@/routers/PrivateRoutes";
 import Unauthorized from "./error/Unauthorized.jsx";
@@ -22,6 +22,7 @@ import LoginView from "./view/auth/LoginView.jsx";
 import PublicRoute from "./routers/PublicRoute.jsx";
 import UsuariosView from "./view/admin/UsuariosView.jsx";
 import PaginaNoEncontrada from "./error/404Page.jsx";
+import ConsultasView from "./view/client/consultas/ConsultasView.jsx";
 
 function App() {
   return (
@@ -54,9 +55,20 @@ function App() {
         {/* UNAUTHORIZED */}
         <Route path="/unauthorized" element={<Unauthorized />} />
 
+        {/* PANEL MÉDICO */}
+        <Route
+          path="/panel/medico"
+          element={
+            <PrivateRoutes allowed={["MEDICO", "ADMIN"]}>
+              <DashboardMedicoView />
+            </PrivateRoutes>
+          }
+        />
+
         {/* CLIENTE */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomeView />} />
+          <Route path="/consultar" element={<ConsultasView />} />
           <Route path="/reservar_cita" element={<ReservarCitaView />} />
           <Route path="/sobre_nosotros" element={<SobreNosotrosView />} />
           <Route path="/contactanos" element={<ContactanosView />} />
