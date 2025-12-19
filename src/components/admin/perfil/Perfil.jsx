@@ -1,5 +1,5 @@
 import PageHeader from "../../ui/PageHeader";
-import "./perfil.css";
+import "./Perfil.css";
 import {
     FaUserMd,
     FaEnvelope,
