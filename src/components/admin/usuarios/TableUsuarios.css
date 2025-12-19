@@ -1,0 +1,164 @@
+:root {
+  --TableUsuarios-bg: #ffffff;
+  --TableUsuarios-border: #e5e7eb;
+  --TableUsuarios-text: #111827;
+
+  --TableUsuarios-primary: #f97316;
+  --TableUsuarios-danger: #ef4444;
+  --TableUsuarios-info: #2563eb;
+
+  --TableUsuarios-row-hover: #f9fafb;
+}
+
+/* CONTENEDOR */
+.tabla-wrapper {
+  margin-top: 24px;
+  background: var(--TableUsuarios-bg);
+  border: 1px solid var(--TableUsuarios-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* TABLA */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: var(--TableUsuarios-text);
+}
+
+/* CABECERA */
+.tabla thead {
+  background: linear-gradient(
+    90deg,
+    var(--TableUsuarios-primary),
+    #fb923c
+  );
+}
+
+.tabla thead th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+/* FILAS */
+.tabla tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.tabla tbody tr:hover {
+  background-color: var(--TableUsuarios-row-hover);
+}
+
+/* CELDAS */
+.tabla td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--TableUsuarios-border);
+  vertical-align: middle;
+}
+
+/* TEXTO */
+.tabla td:nth-child(1),
+.tabla td:nth-child(2) {
+  font-weight: 600;
+}
+
+/* BADGE ROL */
+.rol-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.rol-badge.admin {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--TableUsuarios-info);
+}
+
+.rol-badge.asistente {
+  background: rgba(249, 115, 22, 0.15);
+  color: var(--TableUsuarios-primary);
+}
+
+/* ACCIONES */
+.tabla td:last-child {
+  text-align: right;
+}
+
+/* BOTÓN ICONO */
+.btn-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-delete {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--TableUsuarios-danger);
+}
+
+.acciones-center {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-edit {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--TableUsuarios-info);
+}
+
+.btn-edit:hover {
+  background: var(--TableUsuarios-info);
+  color: #fff;
+}
+
+
+.btn-delete:hover {
+  background: var(--TableUsuarios-danger);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .tabla thead {
+    display: none;
+  }
+
+  .tabla tbody tr {
+    display: block;
+    padding: 12px;
+    border-bottom: 1px solid var(--TableUsuarios-border);
+  }
+
+  .tabla tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border: none;
+  }
+
+  .tabla tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #6b7280;
+  }
+}

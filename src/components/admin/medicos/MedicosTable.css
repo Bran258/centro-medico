@@ -1,0 +1,228 @@
+/* ===============================
+   CONTENEDOR GENERAL
+================================ */
+.mt-wrap {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* ===============================
+   FILTROS
+================================ */
+.mt-filters {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mt-filters input,
+.mt-filters select {
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.mt-filters input {
+  flex: 1;
+}
+
+.mt-filters select {
+  min-width: 200px;
+}
+
+.mt-filters input::placeholder {
+  color: #9ca3af;
+}
+
+.mt-filters input:focus,
+.mt-filters select:focus {
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===============================
+   TABLA
+================================ */
+.mt-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.mt-table thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.mt-table tbody td {
+  padding: 14px 12px;
+  font-size: 14px;
+  color: #1f2937;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.mt-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* ===============================
+   ESTADO (ACTIVO / INACTIVO)
+================================ */
+.mt-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.mt-status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Activo */
+.mt-status--ok {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.mt-status--ok::before {
+  background: #22c55e;
+}
+
+/* Inactivo */
+.mt-status--off {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.mt-status--off::before {
+  background: #ef4444;
+}
+
+/* ===============================
+   ACCIONES
+================================ */
+.mt-table td:last-child {
+  display: flex;
+  gap: 12px;
+}
+
+/* Editar */
+.mt-btn-edit {
+  cursor: pointer;
+  font-size: 16px;
+  color: #2563eb;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.mt-btn-edit:hover {
+  color: #1d4ed8;
+  transform: scale(1.15);
+}
+
+/* Eliminar */
+.mt-btn-delete {
+  cursor: pointer;
+  font-size: 16px;
+  color: #ef4444;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.mt-btn-delete:hover {
+  color: #b91c1c;
+  transform: scale(1.15);
+}
+
+/* ===============================
+   FOOTER / PAGINACIÓN
+================================ */
+.mt-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.mt-footer button {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mt-footer button:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.mt-footer button:active {
+  transform: scale(0.96);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .mt-filters {
+    flex-direction: column;
+  }
+
+  .mt-filters select {
+    width: 100%;
+  }
+
+  .mt-table thead {
+    display: none;
+  }
+
+  .mt-table tbody tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .mt-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    padding: 6px 0;
+  }
+
+  .mt-table td:last-child {
+    justify-content: flex-end;
+  }
+}

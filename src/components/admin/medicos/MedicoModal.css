@@ -1,0 +1,127 @@
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: modalFade 0.2s ease;
+}
+.modal-card h3 {
+  margin: 0 0 18px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: center;
+}
+.modal-card input,
+.modal-card select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-card input::placeholder {
+  color: #9ca3af;
+}
+
+.modal-card input:focus,
+.modal-card select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.modal-actions button {
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.1s;
+}
+
+/* CANCEL */
+.modal-actions button:first-child {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.modal-actions button:first-child:hover {
+  background: #d1d5db;
+}
+
+/* PRIMARY */
+.modal-actions button:last-child {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.modal-actions button:last-child:hover {
+  background: #1d4ed8;
+}
+
+.modal-actions button:active {
+  transform: scale(0.98);
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dark .modal-card {
+  background: #0f172a;
+}
+
+.dark .modal-card h3 {
+  color: #f9fafb;
+}
+
+.dark .modal-card input,
+.dark .modal-card select {
+  background: #020617;
+  border-color: #334155;
+  color: #e5e7eb;
+}
+
+.dark .modal-card input::placeholder {
+  color: #64748b;
+}
+
+.dark .modal-actions button:first-child {
+  background: #334155;
+  color: #e5e7eb;
+}
+
+.dark .modal-actions button:last-child {
+  background: #2563eb;
+}

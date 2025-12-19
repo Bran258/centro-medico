@@ -1,0 +1,118 @@
+.esp-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    backdrop-filter: blur(3px);
+}
+
+.esp-modal {
+    background: #ffffff;
+    width: 100%;
+    max-width: 460px;
+    border-radius: 14px;
+    padding: 24px 26px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    animation: modalFade 0.25s ease;
+}
+
+.esp-modal h3 {
+    margin-bottom: 18px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.esp-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.esp-modal input,
+.esp-modal textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+    color: #1f2937;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #ffffff;
+}
+
+.esp-modal textarea {
+    resize: none;
+    min-height: 90px;
+}
+
+.esp-modal input::placeholder,
+.esp-modal textarea::placeholder {
+    color: #9ca3af;
+}
+
+.esp-modal input:focus,
+.esp-modal textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.esp-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.esp-modal-actions button {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+/* CANCEL */
+.esp-modal-actions button[type="button"] {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.esp-modal-actions button[type="button"]:hover {
+    background: #e5e7eb;
+}
+
+/* SUBMIT */
+.esp-modal-actions button[type="submit"] {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.esp-modal-actions button[type="submit"]:hover {
+    background: #1e4fd8;
+}
+
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .esp-modal {
+        padding: 20px;
+        border-radius: 12px;
+    }
+}

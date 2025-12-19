@@ -1,164 +1,185 @@
 import "./DashboardPanels.css";
-import { MdTrendingUp, MdMedication, MdPriorityHigh, MdPeople } from "react-icons/md";
+import { MdTrendingUp, MdMedication, MdPeople } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-export default function DashboardPanels() {
-    return (
-        <section className="dash-grid">
+const formatHora = (horaISO) => {
+  if (!horaISO) return "—";
+  return new Date(horaISO).toLocaleTimeString("es-PE", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+};
 
-            {/* PANEL 1 - Rendimiento */}
-            <div className="dash-panel large">
-                <div className="dash-panel-header">
-                    <div>
-                        <p className="dash-panel-title">Rendimiento de Citas</p>
-                        <p className="dash-panel-subtitle">Últimos 7 días</p>
-                    </div>
+const formatFecha = (fechaISO) => {
+  if (!fechaISO) return "—";
+  return new Date(fechaISO).toLocaleDateString("es-PE");
+};
 
-                    <div className="dash-growth green">
-                        <MdTrendingUp size={22} />
-                        +8%
-                    </div>
-                </div>
-                <div className="dash-chart">
-                    <div className="day-block">
-                        <div className="dash-bar bg-light"></div>
-                        <p>Lun</p>
-                    </div>
-                    <div className="day-block">
-                        <div className="dash-bar bg-light"></div>
-                        <p>Mar</p>
-                    </div>
-                    <div className="day-block">
-                        <div className="dash-bar bg-light"></div>
-                        <p>Mié</p>
-                    </div>
-                    <div className="day-block">
-                        <div className="dash-bar bg-strong"></div>
-                        <p>Jue</p>
-                    </div>
-                    <div className="day-block">
-                        <div className="dash-bar bg-strong"></div>
-                        <p>Vie</p>
-                    </div>
-                    <div className="day-block">
-                        <div className="dash-bar bg-light"></div>
-                        <p>Sáb</p>
-                    </div>
-                    <div className="day-block">
-                        <div className="dash-bar bg-light"></div>
-                        <p>Dom</p>
-                    </div>
-                </div>
+const getEstadoLabel = (estado) => {
+  if (!estado) return "—";
+  return estado.charAt(0).toUpperCase() + estado.slice(1);
+};
+
+export default function DashboardPanels({ porEstado, ultimos7, proximas }) {
+  // ultimos7: [{fecha:"YYYY-MM-DD", total:number}]
+  // porEstado: [{estado:"pendiente", total:number}]
+  // proximas: citas con include cliente + medico + especialidad
+
+  const max7 = Math.max(1, ...ultimos7.map((x) => x.total || 0));
+
+  // Para “Horarios con alta demanda”: lo saco de próximas (simple)
+  const horariosCount = {};
+  proximas?.forEach((c) => {
+    const h = formatHora(c.hora_solicitada);
+    if (h !== "—") horariosCount[h] = (horariosCount[h] || 0) + 1;
+  });
+
+  const topHorarios = Object.entries(horariosCount)
+    .map(([hora, total]) => ({ hora, total }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 4);
+
+  // Tareas demo: puedes reemplazarlo luego
+  const tareasDemo = [
+    { title: "Revisar citas pendientes", time: "Prioridad alta" },
+    { title: "Confirmar asignación de médicos", time: "Hoy" },
+  ];
+
+  return (
+    <section className="dash-grid">
+      {/* PANEL 1 - Rendimiento */}
+      <div className="dash-panel large">
+        <div className="dash-panel-header">
+          <div>
+            <p className="dash-panel-title">Rendimiento de Citas</p>
+            <p className="dash-panel-subtitle">Últimos 7 días</p>
+          </div>
+
+          <div className="dash-growth green">
+            <MdTrendingUp size={22} />
+            {/* Demo simple */}
+            +{Math.round(
+              (ultimos7.reduce((a, b) => a + (b.total || 0), 0) / 7) * 10
+            ) / 10}
+          </div>
+        </div>
+
+        <div className="dash-chart">
+          {(ultimos7 || []).map((d) => {
+            const heightPct = Math.round(((d.total || 0) / max7) * 100);
+            const day = new Date(d.fecha + "T00:00:00");
+            const name = day.toLocaleDateString("es-PE", { weekday: "short" });
+
+            return (
+              <div className="day-block" key={d.fecha}>
+                {/* Mantengo tus clases: bg-light / bg-strong */}
+                <div
+                  className={`dash-bar ${heightPct >= 60 ? "bg-strong" : "bg-light"}`}
+                  style={{ height: `${Math.max(10, heightPct)}%` }}
+                  title={`${d.fecha}: ${d.total}`}
+                />
+                <p>{name}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* PANEL 2 - Tareas */}
+      <div className="dash-panel sidebar-box">
+        <h3 className="dash-panel-title">Tareas y Notificaciones</h3>
+
+        {tareasDemo.map((t, idx) => (
+          <div className="dash-task" key={idx}>
+            <div className="dash-task-icon blue">
+              <MdMedication size={22} />
             </div>
-
-            {/* PANEL 2 - Tareas */}
-            <div className="dash-panel sidebar-box">
-                <h3 className="dash-panel-title">Tareas y Notificaciones</h3>
-
-                <div className="dash-task">
-                    <div className="dash-task-icon blue">
-                        <MdMedication size={22} />
-                    </div>
-                    <div>
-                        <p className="dash-task-title">Revisar inventario de medicamentos</p>
-                        <p className="dash-task-time">Vence en 2 días</p>
-                    </div>
-                </div>
-
-                <div className="dash-task">
-                    <div className="dash-task-icon blue">
-                        <MdMedication size={22} />
-                    </div>
-                    <div>
-                        <p className="dash-task-title">Revisar inventario de medicamentos</p>
-                        <p className="dash-task-time">Vence en 2 días</p>
-                    </div>
-                </div>
-
-                <div className="pagination-demo">
-                    &lt; 1 2 3 4 5 6 7 8 9 10 &gt;
-                </div>
+            <div>
+              <p className="dash-task-title">{t.title}</p>
+              <p className="dash-task-time">{t.time}</p>
             </div>
-            {/* PANEL 3 - Horarios con Alta Demanda */}
-            <div className="dash-panel medium side-right">
-                <h3 className="dash-panel-title">Horarios con Alta Demanda</h3>
+          </div>
+        ))}
 
-                <ul className="hours-full-list">
-                    <li>
-                        <span>09:00 AM</span>
-                        <b><MdPeople size={18} /> 14 pacientes</b>
-                    </li>
+        <div className="pagination-demo">
+          {/* conteo por estado */}
+          {(porEstado || []).map((e) => (
+            <span key={e.estado} style={{ marginRight: 10 }}>
+              {getEstadoLabel(e.estado)}: <b>{e.total}</b>
+            </span>
+          ))}
+        </div>
+      </div>
 
-                    <li>
-                        <span>10:00 AM</span>
-                        <b><MdPeople size={18} /> 12 pacientes</b>
-                    </li>
+      {/* PANEL 3 - Horarios con Alta Demanda */}
+      <div className="dash-panel medium side-right">
+        <h3 className="dash-panel-title">Horarios con Alta Demanda</h3>
 
-                    <li>
-                        <span>11:30 AM</span>
-                        <b><MdPeople size={18} /> 18 pacientes</b>
-                    </li>
+        <ul className="hours-full-list">
+          {topHorarios.length === 0 && (
+            <li>
+              <span>—</span>
+              <b>
+                <MdPeople size={18} /> 0 pacientes
+              </b>
+            </li>
+          )}
 
-                    <li>
-                        <span>04:00 PM</span>
-                        <b><MdPeople size={18} /> 11 pacientes</b>
-                    </li>
-                </ul>
-            </div>
+          {topHorarios.map((h) => (
+            <li key={h.hora}>
+              <span>{h.hora}</span>
+              <b>
+                <MdPeople size={18} /> {h.total} pacientes
+              </b>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-            {/* PANEL 4 - Próximas Citas */}
-            <div className="dash-panel medium side-left">
-                <div className="dash-panel-header spaced">
-                    <h3 className="dash-panel-title">Próximas Citas</h3>
-                    <a className="dash-link-primary" href="#">Ver Calendario Completo</a>
+      {/* PANEL 4 - Próximas Citas */}
+      <div className="dash-panel medium side-left">
+        <div className="dash-panel-header spaced">
+          <h3 className="dash-panel-title">Próximas Citas</h3>
+          <Link className="dash-link-primary" to="/panel/admin/citas">
+            Ver Todas
+          </Link>
+        </div>
+
+        <div className="dash-appointments">
+          {(proximas || []).map((cita) => {
+            const paciente = `${cita.cliente?.nombres || ""} ${cita.cliente?.apellidos || ""}`.trim();
+            const especialidad = cita.medico?.especialidad?.nombre || "Sin asignar";
+            const doctor = cita.medico?.persona
+              ? `${cita.medico.persona.nombres} ${cita.medico.persona.apellidos}`
+              : "Sin asignar";
+
+            return (
+              <div className="dash-appointment" key={cita.id}>
+                <div className="dash-appointment-left">
+                  {/* IMPORTANTE: NO pongas src="" porque rompe consola */}
+                  <div className="dash-avatar-fake" aria-hidden="true">
+                    {(paciente[0] || "P").toUpperCase()}
+                  </div>
+
+                  <div>
+                    <p className="dash-appointment-name">{paciente || "Paciente"}</p>
+                    <p className="dash-appointment-info">
+                      {formatHora(cita.hora_solicitada)} - {especialidad} ({formatFecha(cita.fecha_solicitada)})
+                    </p>
+                  </div>
                 </div>
 
-                <div className="dash-appointments">
-                    <div className="dash-appointment">
-                        <div className="dash-appointment-left">
-                            <img className="dash-avatar" src="" alt="Paciente" />
-                            <div>
-                                <p className="dash-appointment-name">Carlos Ruiz</p>
-                                <p className="dash-appointment-info">09:00 AM - Cardiología</p>
-                            </div>
-                        </div>
-                        <p className="dash-appointment-doctor">Dr. Evelyn Reed</p>
-                    </div>
+                <p className="dash-appointment-doctor">{doctor}</p>
+              </div>
+            );
+          })}
 
-                    <div className="dash-appointment">
-                        <div className="dash-appointment-left">
-                            <img className="dash-avatar" src="" alt="Paciente" />
-                            <div>
-                                <p className="dash-appointment-name">Ana Gómez</p>
-                                <p className="dash-appointment-info">09:30 AM - Pediatría</p>
-                            </div>
-                        </div>
-                        <p className="dash-appointment-doctor">Dr. Ben Carter</p>
-                    </div>
-
-                    <div className="dash-appointment">
-                        <div className="dash-appointment-left">
-                            <img className="dash-avatar" src="" alt="Paciente" />
-                            <div>
-                                <p className="dash-appointment-name">Ana Gómez</p>
-                                <p className="dash-appointment-info">09:30 AM - Pediatría</p>
-                            </div>
-                        </div>
-                        <p className="dash-appointment-doctor">Dr. Ben Carter</p>
-                    </div>
-
-                    <div className="dash-appointment">
-                        <div className="dash-appointment-left">
-                            <img className="dash-avatar" src="" alt="Paciente" />
-                            <div>
-                                <p className="dash-appointment-name">Ana Gómez</p>
-                                <p className="dash-appointment-info">09:30 AM - Pediatría</p>
-                            </div>
-                        </div>
-                        <p className="dash-appointment-doctor">Dr. Ben Carter</p>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    );
+          {(!proximas || proximas.length === 0) && (
+            <p style={{ margin: 0, color: "#6b7280" }}>No hay próximas citas.</p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,110 +1,146 @@
 import "@/styles/client/reservarCita/ResumenCita.css";
 import Swal from "sweetalert2";
-import { registrarCita } from "../../../service/citasService";
+import { crearCita } from "../../../service/citas.service";
+import { useState } from "react";
 
-export default function ResumenCita({ paciente, telefono, sintomas, fecha, hora, tipoCita }) {
+export default function ResumenCita({
+  nombres,
+  apellidos,
+  email,
+  telefono,
+  sintomas,
+  fecha,
+  hora,
+  tipoCita,
+}) {
+  const [saving, setSaving] = useState(false);
 
   const guardarCita = async () => {
+    if (saving) return;
 
-    // VALIDACIÓN CAMPOS VACÍOS
-    if (!paciente || !telefono || !sintomas || !fecha || !hora) {
-      Swal.fire({ icon: "warning", title: "Campos incompletos", text: "Completa todos los campos antes de registrar la cita." });
+    // VALIDACIONES BÁSICAS
+    if (!nombres || !telefono || !sintomas || !fecha || !hora) {
+      Swal.fire({
+        icon: "warning",
+        title: "Campos incompletos",
+        text: "Completa todos los campos obligatorios.",
+      });
       return;
     }
 
-    // VALIDACIÓN DEL TELÉFONO (9 dígitos)
     if (telefono.length !== 9) {
-      Swal.fire({ icon: "warning", title: "Número inválido", text: "El número de celular debe tener 9 dígitos." });
+      Swal.fire({
+        icon: "warning",
+        title: "Número inválido",
+        text: "El número de celular debe tener 9 dígitos.",
+      });
       return;
     }
+
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Correo inválido",
+        text: "Ingresa un correo electrónico válido.",
+      });
+      return;
+    }
+
+    if (!(fecha instanceof Date)) {
+      Swal.fire({
+        icon: "error",
+        title: "Fecha inválida",
+        text: "Selecciona una fecha válida.",
+      });
+      return;
+    }
+
+    const fechaISO = fecha.toISOString().split("T")[0];
+
+    setSaving(true);
 
     try {
-      await registrarCita({ paciente, telefono, sintomas, fecha, hora, tipoCita });
+      await crearCita({
+        nombres: nombres.trim(),
+        apellidos: apellidos?.trim() || null,
+        email: email?.trim() || null,
+        telefono,
+        fecha_solicitada: fechaISO,
+        hora_solicitada: hora,
+        sintomas: sintomas.trim(),
+      });
     } catch (error) {
-      Swal.fire({ icon: "error", title: "Error", text: "No se pudo guardar la cita." });
+      Swal.fire({
+        icon: "error",
+        title: "Error al registrar",
+        text:
+          error.response?.data?.message ||
+          "No se pudo registrar la cita.",
+      });
       console.error(error);
+      setSaving(false);
       return;
     }
 
-    // MENSAJE PARA WHATSAPP
-    const fechaISO = fecha.toISOString().split("T")[0];
-    const mensaje = encodeURIComponent(
-      `*Nueva solicitud de cita médica*
-
-      *Datos del paciente*
-      • *Nombre:* ${paciente}
-      • *Tipo de atención:* ${tipoCita === "adulto" ? "Paciente adulto" : "Paciente menor de edad"}
-      • *Teléfono:* ${telefono}
-
-      *Detalles de la cita*
-      • *Fecha:* ${fechaISO}
-      • *Hora:* ${hora}
-
-      *Motivo de consulta / Síntomas*
-      ${sintomas}
-
-      Favor de confirmar disponibilidad o coordinar cualquier indicación adicional.`
-    );
-
-    const numeroDestino = import.meta.env.VITE_WHATSAPP_NUMERO;
-
-    Swal.fire({ icon: "success", title: "Cita registrada", text: "Tu cita ha sido registrada correctamente." })
-      .then(() => {
-        window.open(`https://wa.me/${numeroDestino}?text=${mensaje}`, "_blank");
-        window.location.reload();
-      });
+    Swal.fire({
+      icon: "success",
+      title: "Cita registrada",
+      text: "Tu cita fue registrada correctamente.",
+      confirmButtonText: "Aceptar",
+    }).then(() => window.location.reload());
   };
-
 
   return (
     <div className="card resumen-card">
       <h2 className="resumen-title">Resumen de tu Cita</h2>
 
       <div className="d-flex flex-column gap-3 resumen-info">
-
         <div className="d-flex justify-content-between">
-          <span className="label-muted">Paciente:</span>
-          <span className="label-strong">{paciente || "—"}</span>
+          <span>Paciente:</span>
+          <span>{`${nombres} ${apellidos || ""}`}</span>
         </div>
 
         <div className="d-flex justify-content-between">
-          <span className="label-muted">Tipo de Cita:</span>
-          <span className="label-strong">
-            {tipoCita === "adulto" ? "Para mí" : "Para un menor"}
-          </span>
+          <span>Correo:</span>
+          <span>{email || "—"}</span>
         </div>
 
         <div className="d-flex justify-content-between">
-          <span className="label-muted">Teléfono:</span>
-          <span className="label-strong">{telefono || "—"}</span>
+          <span>Tipo:</span>
+          <span>{tipoCita === "adulto" ? "Adulto" : "Menor"}</span>
         </div>
 
         <div className="d-flex justify-content-between">
-          <span className="label-muted">Fecha:</span>
-          <span className="label-strong">
-            {fecha ? fecha.toDateString() : "—"}
-          </span>
+          <span>Teléfono:</span>
+          <span>{telefono}</span>
         </div>
 
         <div className="d-flex justify-content-between">
-          <span className="label-muted">Hora:</span>
-          <span className="label-strong">{hora || "—"}</span>
+          <span>Fecha:</span>
+          <span>{fecha ? fecha.toDateString() : "—"}</span>
+        </div>
+
+        <div className="d-flex justify-content-between">
+          <span>Hora:</span>
+          <span>{hora}</span>
         </div>
 
         <div>
-          <span className="label-muted">Síntomas:</span>
-          <p className="label-strong mt-1">{sintomas || "—"}</p>
+          <span>Síntomas:</span>
+          <p>{sintomas}</p>
         </div>
-
       </div>
 
-      <hr className="my-4" />
+      <hr />
 
-      <button className="btn btn-primary btn-confirm w-100"
-        onClick={guardarCita}>
-        Confirmar Cita
+      <button
+        className="btn btn-primary w-100"
+        onClick={guardarCita}
+        disabled={saving}
+      >
+        {saving ? "Guardando..." : "Confirmar Cita"}
       </button>
-
     </div>
   );
 }
+

@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
-import { MdDashboard, MdPeople, MdSettings } from "react-icons/md";
+import { MdDashboard, MdPeople,MdMedicalServices,MdLocalHospital ,MdSettings } from "react-icons/md";
 import "@/styles/ui/ManagementSidebar.css";
 
 const menuItems = [
   { label: "Dashboard", icon: <MdDashboard />, path: "/panel/admin" },
   { label: "Usuarios", icon: <MdPeople />, path: "/panel/admin/usuarios" },
-  { label: "Configuración", icon: <MdSettings />, path: "/panel/admin/config" },
+  { label: "Medicos", icon: <MdMedicalServices />, path: "/panel/admin/medicos" },
+  { label: "Especialidades", icon: <MdLocalHospital />, path: "/panel/admin/especialidades" },
+  { label: "Campañas", icon: <MdSettings />, path: "/panel/admin/campañas" },
+  { label: "citas", icon: <MdSettings />, path: "/panel/admin/gestion_citas" },
 ];
 
 export default function ManagementSidebar() {

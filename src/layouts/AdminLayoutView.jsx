@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import ManagementNavigation from "@/components/ui/ManagementNavigation";
 import { useAuth } from "@/hooks/auth/useAuth";
 import "@/styles/layout/AdminLayoutView.css";
 import ManagementSidebar from "@/components/ui/ManagementSidebar";
+import AdminNavigation from "@/components/ui/AdminNavigation";
 
 export default function AdminLayoutView() {
   const { logout } = useAuth();
@@ -16,11 +16,10 @@ export default function AdminLayoutView() {
   return (
     <div className="admin-layout">
       {/* TOPBAR */}
-      <ManagementNavigation onLogout={handleLogout} />
+      <AdminNavigation onLogout={handleLogout} />
 
       {/* SIDEBAR + CONTENIDO */}
       <div className="admin-layout-body">
-        
         <div className="admin-sidebar-space">
           <ManagementSidebar />
         </div>
@@ -32,4 +31,3 @@ export default function AdminLayoutView() {
     </div>
   );
 }
-

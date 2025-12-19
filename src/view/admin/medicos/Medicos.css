@@ -1,0 +1,70 @@
+/* ===============================
+   CONTENEDOR PRINCIPAL
+================================ */
+.medicos-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* 🔥 separación clara entre header y tabla */
+  padding: 8px 4px;
+}
+
+/* ===============================
+   HEADER (TÍTULO + BOTÓN)
+================================ */
+.medicos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+/* En móvil se apila */
+@media (max-width: 768px) {
+  .medicos-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ===============================
+   BOTÓN CREAR MÉDICO
+================================ */
+.medicos-createBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.medicos-createBtn svg {
+  font-size: 14px;
+}
+
+.medicos-createBtn:hover {
+  background: #1d4ed8;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.medicos-createBtn:active {
+  transform: scale(0.97);
+}
+
+/* ===============================
+   AJUSTE VISUAL CON TABLA
+================================ */
+/* da aire extra arriba de la tabla */
+.medicos-page > .mt-wrap {
+  margin-top: 4px;
+}

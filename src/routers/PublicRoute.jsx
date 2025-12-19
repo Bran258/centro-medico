@@ -1,41 +1,28 @@
-// src/routers/PublicRoute.jsx
 import { Navigate } from "react-router-dom";
-import { useSession } from "@/hooks/auth/useSession";
-import { useEffect, useState } from "react";
-import { supabase } from "@/service/supabase";
+import { useAuth } from "@/hooks/auth/useAuth";
 import Loading from "@/error/Loading";
 
 export default function PublicRoute({ children }) {
-  const { session, loading } = useSession();
-  const [role, setRole] = useState(null);
-  const [checking, setChecking] = useState(true);
+  const { user, role, loading } = useAuth();
 
-  useEffect(() => {
-    async function loadRole() {
-      if (!session?.user?.id) {
-        setChecking(false);
-        return;
-      }
+  // Esperar sesión + rol
+  if (loading) {
+    return <Loading />;
+  }
 
-      const { data } = await supabase
-        .from("usuarios")
-        .select("role")
-        .eq("id", session.user.id)
-        .single();
-
-      setRole(data?.role || null);
-      setChecking(false);
+  // Si ya hay sesión, redirigir según rol
+  if (user && role) {
+    if (role === "admin") {
+      return <Navigate to="/panel/admin" replace />;
     }
 
-    if (!loading) loadRole();
-  }, [loading, session]);
+    if (role === "asistente") {
+      return <Navigate to="/panel/asistente" replace />;
+    }
 
-  if (loading || checking) return <Loading />;
-
-  if (session?.user?.id) {
-    if (role === "admin") return <Navigate to="/panel/admin" replace />;
     return <Navigate to="/" replace />;
   }
 
+  // No hay sesión → mostrar login
   return children;
 }

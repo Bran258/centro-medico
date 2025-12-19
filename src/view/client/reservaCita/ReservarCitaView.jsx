@@ -10,15 +10,17 @@ export default function ReservarCitaView() {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
 
-  const [paciente, setPaciente] = useState("");
-  const [tipoCita, setTipoCita] = useState("adulto");
+  // 🔹 DATOS DEL PACIENTE
+  const [nombres, setNombres] = useState("");
+  const [apellidos, setApellidos] = useState("");
+  const [email, setEmail] = useState("");
   const [telefono, setTelefono] = useState("");
   const [sintomas, setSintomas] = useState("");
+  const [tipoCita, setTipoCita] = useState("adulto");
 
   return (
     <div className="container reservar-container py-5">
-
-      {/* CABECERA PRINCIPAL */}
+      {/* CABECERA */}
       <div className="text-center mb-5">
         <h1 className="fw-bold display-5 text-dark">
           Agenda tu Cita Médica
@@ -28,14 +30,16 @@ export default function ReservarCitaView() {
         </h2>
       </div>
 
-      {/* CONTENEDOR DE PASOS */}
       <div className="row g-4">
-
         {/* IZQUIERDA */}
         <div className="col-lg-6 d-flex flex-column gap-4">
           <StepPaciente
-            paciente={paciente}
-            setPaciente={setPaciente}
+            nombres={nombres}
+            setNombres={setNombres}
+            apellidos={apellidos}
+            setApellidos={setApellidos}
+            email={email}
+            setEmail={setEmail}
             telefono={telefono}
             setTelefono={setTelefono}
             sintomas={sintomas}
@@ -58,7 +62,9 @@ export default function ReservarCitaView() {
           />
 
           <ResumenCita
-            paciente={paciente}
+            nombres={nombres}
+            apellidos={apellidos}
+            email={email}
             telefono={telefono}
             sintomas={sintomas}
             fecha={selectedDay}
@@ -66,8 +72,8 @@ export default function ReservarCitaView() {
             tipoCita={tipoCita}
           />
         </div>
-
       </div>
     </div>
   );
 }
+
