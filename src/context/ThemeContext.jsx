@@ -12,7 +12,7 @@ export const ThemeProvider = ({ children }) => {
 
   // ➜ usando .env con fallback
   const API_URL =
-    import.meta.env.VITE_API_URL_CAMPAÑA;
+    import.meta.env.VITE_API_URL_CAMPANA;
 
   const fetchTheme = async () => {
     // Si no hay URL, no sigas
