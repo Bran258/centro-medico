@@ -12,8 +12,7 @@ export const ThemeProvider = ({ children }) => {
 
   // ➜ usando .env con fallback
   const API_URL =
-    import.meta.env.VITE_API_URL_CAMPAÑA ||
-    "https://centro-medico-backend.vercel.app/api/theme";
+    import.meta.env.VITE_API_URL_CAMPAÑA;
 
   const fetchTheme = async () => {
     // Si no hay URL, no sigas
