@@ -1,9 +1,8 @@
-// src/routers/PrivateRoutes.jsx
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "@/hooks/auth/useAuth";
 import Loading from "@/error/Loading";
 
-export function PrivateRoutes({ children, allowed }) {
+export function PrivateRoutes({ allowed }) {
   const { user, role, loading } = useAuth();
 
   if (loading) return <Loading />;
@@ -20,5 +19,5 @@ export function PrivateRoutes({ children, allowed }) {
     return <Navigate to="/unauthorized" replace />;
   }
 
-  return children;
+  return <Outlet />;
 }

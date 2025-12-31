@@ -1,135 +1,155 @@
-/* ------------------------------------------------ */
-/* ESPACIADO GENERAL ENTRE SECCIÓN Y FOOTER */
-/* ------------------------------------------------ */
-.especialidades-section-container {
-  margin-bottom: 90px; /* Ajustable según diseño */
+:root {
+  --esp-bg-main: #ffffff;
+
+  --esp-blue: #2563eb;
+  --esp-orange: #f97316;
+  --esp-red: #ef4444;
+
+  --esp-text-main: #0f172a;
+  --esp-text-muted: #64748b;
+
+  --esp-border: #e5e7eb;
+
+  --esp-radius: 14px;
+  --esp-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  --esp-shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* ------------------------------------------------ */
-/* CARD PRINCIPAL - GENERAL */
-/* ------------------------------------------------ */
-.especial-card-main {
-  background-color: var(--bs-primary);
-  border-radius: 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: white;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-  margin-bottom: 26px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.especial-card-main:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px rgba(0,0,0,0.22);
-}
-
-/* ------------------------------------------------ */
-/* PEDIATRÍA (COLOR NARANJA) */
-/* ------------------------------------------------ */
-.pediatria-card {
-  background-color: #ff7b00 !important;
-  border-color: rgba(255, 255, 255, 0.55) !important;
-}
-
-.pediatria-icon-wrapper {
-  background: white;
-  color: #ff7b00 !important;
-  border: 4px solid #ff7b00 !important;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 6px 18px rgba(255, 123, 0, 0.3);
-  transition: transform 0.35s ease;
-}
-
-.pediatria-card:hover .pediatria-icon-wrapper {
-  transform: scale(1.05);
-}
-
-.pediatria-main-icon {
-  font-size: 64px;
-  color: #ff7b00 !important;
-}
-
-.pediatria-star-border {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 3px solid #ff7b00 !important;
-  background: #fff;
+.esp-container-seccion {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 24px;
+  background: var(--esp-bg-main);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(255, 123, 0, 0.35);
+  flex-direction: column;
+  gap: 48px;
 }
 
-.star-icon {
-  color: gold;
-  font-size: 24px;
+.esp-container-seccion .esp-header {
+  max-width: 720px;
 }
 
-/* ------------------------------------------------ */
-/* ÍCONO PRINCIPAL */
-/* ------------------------------------------------ */
-.icon-wrapper-main {
+.esp-container-seccion .esp-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--esp-text-main);
+  letter-spacing: -0.6px;
+}
+
+.esp-container-seccion .esp-subtitle {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  color: var(--esp-text-muted);
+  line-height: 1.6;
+}
+
+.esp-container-seccion .esp-featured {
   position: relative;
-  width: 120px;
-  height: 120px;
+  padding: 40px 36px;
+  border-radius: var(--esp-radius);
+  background: #ffffff;
+  border: 2px solid var(--esp-blue);
+  box-shadow: var(--esp-shadow);
 }
 
-/* ------------------------------------------------ */
-/* CARDS PEQUEÑOS */
-/* ------------------------------------------------ */
-.especial-card {
-  background: white;
-  border-radius: 1rem;
-  border: 1px solid rgba(0,0,0,0.08);
-  transition: all 0.28s ease;
-  cursor: pointer;
+.esp-container-seccion .esp-featured::before {
+  content: "Especialidad destacada";
+  position: absolute;
+  top: -14px;
+  left: 32px;
+  background: var(--esp-blue);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
-.especial-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--bs-primary);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+.esp-container-seccion .esp-featured-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--esp-blue);
+  margin-bottom: 12px;
 }
 
-/* ------------------------------------------------ */
-/* ICONOS DE ESPECIALIDADES */
-/* ------------------------------------------------ */
-.icon-wrapper {
-  width: 60px;
-  height: 60px;
-  background: rgba(0, 123, 255, 0.12);
-  color: var(--bs-primary);
-  border-radius: 50%;
+.esp-container-seccion .esp-featured-desc {
+  font-size: 1.05rem;
+  color: var(--esp-text-main);
+  line-height: 1.7;
+  max-width: 800px;
+}
+
+.esp-container-seccion .esp-grid {
   display: grid;
-  place-items: center;
-  font-size: 28px;
-  transition: background 0.28s ease, color 0.28s ease;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
 }
 
-.especial-card:hover .icon-wrapper {
-  background: var(--bs-primary);
-  color: #fff;
+.esp-container-seccion .esp-card {
+  background: #ffffff;
+  border-radius: var(--esp-radius);
+  padding: 28px 24px;
+  border: 1px solid var(--esp-border);
+  box-shadow: var(--esp-shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* ------------------------------------------------ */
-/* TEXTOS */
-/* ------------------------------------------------ */
-.especial-card h5 {
+.esp-container-seccion .esp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--esp-shadow);
+}
+
+.esp-container-seccion .esp-card::before {
+  content: "";
+  width: 48px;
+  height: 4px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+.esp-container-seccion .esp-card:nth-child(3n + 1)::before {
+  background: var(--esp-orange);
+}
+
+.esp-container-seccion .esp-card:nth-child(3n + 2)::before {
+  background: var(--esp-blue);
+}
+
+.esp-container-seccion .esp-card:nth-child(3n + 3)::before {
+  background: var(--esp-red);
+}
+
+.esp-container-seccion .esp-card-title {
+  font-size: 1.15rem;
   font-weight: 700;
-  color: #181411;
-  letter-spacing: -0.2px;
+  color: var(--esp-text-main);
+  line-height: 1.3;
 }
 
-.especial-card p {
-  line-height: 1.48;
+.esp-container-seccion .esp-card-desc {
+  font-size: 0.95rem;
+  color: var(--esp-text-muted);
+  line-height: 1.6;
 }
 
+@media (max-width: 768px) {
+  .esp-container-seccion {
+    padding: 48px 20px;
+  }
 
+  .esp-container-seccion .esp-title {
+    font-size: 2.2rem;
+  }
+
+  .esp-container-seccion .esp-featured {
+    padding: 32px 24px;
+  }
+
+  .esp-container-seccion .esp-featured-title {
+    font-size: 1.7rem;
+  }
+}

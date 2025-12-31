@@ -8,7 +8,7 @@
 }
 
 /* TITULO */
-.horarios-title {
+.horarios-card .horarios-title {
   font-size: 1rem;
   font-weight: 600;
   color: #0f172a;
@@ -16,14 +16,16 @@
 }
 
 /* SECCIÓN "Mañana" y "Tarde" */
-.horarios-section {
+.horarios-card .horarios-section {
+  
   font-size: 0.9rem;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 /* BOTONES */
-.btn-hour {
+.horarios-card .btn-hour {
+  color: #0f172a; 
   height: 40px;
   border: 1px solid #cbd5e1;
   background: white;
@@ -31,13 +33,13 @@
   transition: 0.2s;
 }
 
-.btn-hour:hover {
+.horarios-card .btn-hour:hover {
   border-color: #0ea5e9;
   background: rgba(14,165,233,0.1);
 }
 
 /* BOTÓN SELECCIONADO */
-.selected-hour {
+.horarios-card .selected-hour {
   border: 2px solid #0ea5e9 !important;
   background: rgba(14,165,233,0.12);
   font-weight: 700;
@@ -45,7 +47,7 @@
 }
 
 /* DESHABILITADO */
-.disabled-hour {
+.horarios-card .disabled-hour {
   background: #f1f5f9;
   color: #94a3b8;
   cursor: not-allowed;

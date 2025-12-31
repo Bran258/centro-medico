@@ -1,18 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { MdDashboard, MdPeople,MdMedicalServices,MdLocalHospital ,MdCampaign, MdEvent,MdHistory } from "react-icons/md";
+import { MdHistory, MdEvent } from "react-icons/md";
 import "@/styles/ui/ManagementSidebar.css";
 
 const menuItems = [
-  { label: "Dashboard", icon: <MdDashboard />, path: "/panel/admin" },
-  { label: "Usuarios", icon: <MdPeople />, path: "/panel/admin/usuarios" },
-  { label: "Medicos", icon: <MdMedicalServices />, path: "/panel/admin/medicos" },
-  { label: "Especialidades", icon: <MdLocalHospital />, path: "/panel/admin/especialidades" },
-  { label: "Campañas", icon: <MdCampaign />, path: "/panel/admin/campañas" },
-  { label: "Citas", icon: <MdEvent/>, path: "/panel/admin/gestion_citas" },
-  { label: "Historial", icon: <MdHistory />, path: "/panel/admin/gestion_historial" },
+  { label: "Citas", icon: <MdEvent />, path: "/panel/asistente/gestion_citas" },
+  { label: "Historial", icon: <MdHistory />, path: "/panel/asistente/gestion_historial" },
 ];
 
-export default function ManagementSidebar() {
+export default function SidebarAsistente() {
   return (
     <aside className="sidebarAdmin">
       <div className="sidebarAdmin-header">

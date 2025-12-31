@@ -9,7 +9,7 @@ import AdminLayoutView from "./layouts/AdminLayoutView.jsx";
 import HomeView from "./view/client/home/HomeView.jsx";
 import ReservarCitaView from "./view/client/reservaCita/ReservarCitaView.jsx";
 import SobreNosotrosView from "./view/client/sobrenosotros/SobreNosotrosView.jsx";
-import ContactanosView from "./view/client/contacto/ContactanosView.jsx";
+import ContactoView from "./view/client/contacto/ContactoView.jsx";
 import EspecialidadesSection from "./components/client/especialidades/EspecialidadesSection.jsx";
 import ConsultasView from "./view/client/consultas/ConsultasView.jsx";
 
@@ -18,7 +18,6 @@ import DashboardAdminView from "./view/admin/DashboardAdminView.jsx";
 
 
 import PerfinView from "./view/admin/perfil/PerfinView.jsx";
-import NotificacionesView from "./view/admin/notificaciones/NotificacionesView.jsx";
 
 import UsuariosView from "./view/admin/usuarios/UsuariosView.jsx";
 import Medicos from "./view/admin/medicos/Medicos.jsx";
@@ -35,9 +34,8 @@ import PaginaNoEncontrada from "./error/404Page.jsx";
 import Pendiente from "./components/admin/usuarios/Pendiente.jsx";
 import AdminSettings from "./view/admin/AdminSettings.jsx";
 import CitasView from "./view/admin/citas/CitasView.jsx";
-
-
-
+import HistorialView from "./view/admin/historial/HistorialView.jsx";
+import AsistenteLayoutView from "./layouts/AsistenteLayoutView.jsx";
 
 
 function App() {
@@ -59,22 +57,38 @@ function App() {
           {/* PANEL ADMIN */}
           <Route
             path="/panel/admin"
-            element={
-              <PrivateRoutes allowed={["admin"]}>
-                <AdminLayoutView />
-              </PrivateRoutes>
-            }
+            element={<PrivateRoutes allowed={["admin"]} />}
           >
-            <Route index element={<DashboardAdminView />} />
-            <Route path="perfil" element={<PerfinView />} />
-
-            <Route path="usuarios" element={<UsuariosView />} />
-            <Route path="medicos" element={<Medicos />} />
-            <Route path="especialidades" element={<EspecialidadesView />} />
-            <Route path="campañas" element={<AdminSettings />} />
-            <Route path="gestion_citas" element={<CitasView />} />
-            
+            <Route element={<AdminLayoutView />}>
+              <Route index element={<DashboardAdminView />} />
+              <Route path="perfil" element={<PerfinView />} />
+              <Route path="usuarios" element={<UsuariosView />} />
+              <Route path="medicos" element={<Medicos />} />
+              <Route path="especialidades" element={<EspecialidadesView />} />
+              <Route path="campañas" element={<AdminSettings />} />
+              <Route path="gestion_citas" element={<CitasView />} />
+              <Route path="gestion_historial" element={<HistorialView />} />
+            </Route>
           </Route>
+
+
+          {/* PANEL ASISTENTE */}
+          <Route
+            path="/panel/asistente"
+            element={<PrivateRoutes allowed={["asistente"]} />}
+          >
+            <Route element={<AsistenteLayoutView />}>
+              {/* INDEX */}
+              <Route index element={<CitasView />} />
+
+              <Route path="gestion_citas" element={<CitasView />} />
+              <Route path="gestion_historial" element={<HistorialView />} />
+              <Route path="perfil" element={<PerfinView />} />
+            </Route>
+          </Route>
+
+
+
 
           {/* UNAUTHORIZED */}
           <Route path="/pendiente" element={<Pendiente />} />
@@ -86,7 +100,7 @@ function App() {
             <Route path="/consultar" element={<ConsultasView />} />
             <Route path="/reservar_cita" element={<ReservarCitaView />} />
             <Route path="/sobre_nosotros" element={<SobreNosotrosView />} />
-            <Route path="/contactanos" element={<ContactanosView />} />
+            <Route path="/contactanos" element={<ContactoView />} />
             <Route path="/especialidades" element={<EspecialidadesSection />} />
           </Route>
 

@@ -12,6 +12,18 @@ export const updateFotoPersona = async (id, foto_url) => {
   return res.data;
 };
 
+
+// PERFIL PROPIO (admin + asistente)
+export const updateMiPersona = async (data) => {
+  const res = await api.put("/api/personas/me", data);
+  return res.data;
+};
+
+export const updateMiFotoPersona = async (foto_url) => {
+  const res = await api.put("/api/personas/me", { foto_url });
+  return res.data;
+};
+
 // OBTENER PERSONA POR ID
 export const getPersonaById = async (id) => {
   const res = await api.get(`/api/personas/${id}`);

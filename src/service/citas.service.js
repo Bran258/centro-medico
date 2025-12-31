@@ -29,3 +29,10 @@ export const eliminarCita = async (id) => {
   const res = await api.delete(`/api/citas/${id}`);
   return res.data;
 };
+
+export const buscarCitasPorPaciente = async (query) => {
+  const res = await api.get("/api/citas/buscar", {
+    params: { q: query },
+  });
+  return res.data;
+};

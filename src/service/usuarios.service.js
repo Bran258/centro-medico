@@ -31,3 +31,8 @@ export const createUsuario = async (data) => {
   const res = await api.post("/api/usuarios", data);
   return res.data;
 };
+
+export const getMiPerfil = async () => {
+  const res = await api.get("/api/usuarios/me");
+  return res.data;
+};

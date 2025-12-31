@@ -15,7 +15,6 @@ export default function AdminLayoutView() {
 
   return (
     <div className="admin-layout">
-      {/* TOPBAR */}
       <AdminNavigation onLogout={handleLogout} />
 
       {/* SIDEBAR + CONTENIDO */}
